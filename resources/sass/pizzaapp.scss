@@ -1,0 +1,11 @@
+@import 'variables';
+.la {
+    font-size: 20px;
+}
+
+.absolute-logo {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    background: $white;
+}
