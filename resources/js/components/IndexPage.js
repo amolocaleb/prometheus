@@ -4,11 +4,13 @@ import ReactDOM from 'react-dom';
 export default class IndexPage extends Component {
     render() {
         return (
-            <h2>This is Index</h2>
+            <div class="ip_y1">
+                <img src="/images/chef.jpg" />
+            </div>
         );
     }
 }
 
-if (document.getElementById('south'))   {
-    ReactDOM.render(<IndexPage />,document.getElementById('south'))
+if (document.querySelector('#chefContainer'))   {
+    ReactDOM.render(<IndexPage />,document.querySelector('#chefContainer'))
 }

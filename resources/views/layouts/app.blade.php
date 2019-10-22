@@ -22,8 +22,8 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white">
-            <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-white m-0 p-0 custom-nav">
+            <div class="container m-0">
                 <a class="navbar-brand absolute-logo" href="{{ url('/') }}">
                     <img src="{{'/images/logo.png'}}" alt="" srcset="">
                 </a>
@@ -41,14 +41,14 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                        <li class="nav-item">
-                           <a href=""><i class="la la-shopping-cart"></i></a>
+                           <a href="" class="text-white">Cart<i class="la la-shopping-cart text-white"></i></a>
                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="main">
             @yield('content')
         </main>
     </div>

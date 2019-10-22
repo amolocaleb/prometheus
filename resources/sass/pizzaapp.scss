@@ -1,11 +1,35 @@
 @import 'variables';
-.la {
-    font-size: 20px;
+
+#chefContainer,#pizzaCarousel{
+    
+    height: 100vh;
+}
+#pizzaCarousel{
+    flex: 2 0 49vw;
+}
+
+#chefContainer{
+    flex: 1 0 49vw;
+    overflow: hidden;
+}
+.custom-nav {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top:10px;
+    z-index: 33;
+    background: 0 0 !important;
 }
 
 .absolute-logo {
-    position: absolute;
-    left: 0;
-    top: 2px;
-    background: $white;
+    margin-left: -15px;
+}
+
+.main{
+    display: flex;
+    flex-direction: row;
+    flex: 1 0 100vw;
+}
+.ip_y1{
+    margin-top: 100px;
 }
