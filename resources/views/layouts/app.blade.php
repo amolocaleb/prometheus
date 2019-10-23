@@ -10,20 +10,20 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ p_asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/pizzaapp.css') }}" rel="stylesheet">
+    <link href="{{ p_asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ p_asset('css/pizzaapp.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white m-0 p-0 custom-nav">
-            <div class="container m-0">
+            <div class="container-fluid">
                 <a class="navbar-brand absolute-logo" href="{{ url('/') }}">
                     <img src="{{'/images/logo.png'}}" alt="" srcset="">
                 </a>
@@ -40,6 +40,12 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <li class="nav-item">
+                            <a href="" class="text-white">Home</i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="" class="text-white">About Us</a>
+                        </li>
                        <li class="nav-item">
                            <a href="" class="text-white">Cart<i class="la la-shopping-cart text-white"></i></a>
                        </li>

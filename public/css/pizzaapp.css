@@ -1,16 +1,31 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
 #chefContainer,
 #pizzaCarousel {
-  height: 100vh;
+  display: -webkit-box;
+  display: flex;
+}
+
+.ip_y1_btn_wrapper {
+  align-self: flex-end;
+  left: 2rem;
+  position: absolute;
 }
 
 #pizzaCarousel {
   -webkit-box-flex: 2;
-          flex: 2 0 49vw;
+          flex: 2 0 64%;
 }
 
 #chefContainer {
   -webkit-box-flex: 1;
-          flex: 1 0 49vw;
+          flex: 1 0 34%;
   overflow: hidden;
 }
 
@@ -18,7 +33,6 @@
   display: block;
   position: absolute;
   width: 100%;
-  top: 10px;
   z-index: 33;
   background: 0 0 !important;
 }
@@ -38,6 +52,60 @@
 }
 
 .ip_y1 {
-  margin-top: 100px;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+blockquote.blockquote.flex-start {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  position: absolute;
+  left: 2rem;
+  font-size: 2rem;
+  width: 28rem;
+}
+
+.flex-start * {
+  font-family: "DM Serif Text", serif !important;
+}
+
+.ip_y1_btn_wrapper a,
+.ip_y2_btn_wrapper a {
+  color: #ffffff;
+  font-family: "Nunito Sans", sans-serif;
+  background: #ff5252;
+  border: none;
+}
+
+.ip_y1_btn_wrapper a:hover,
+.ip_y2_btn_wrapper a:hover {
+  color: #fff;
+}
+
+.ip_y1_btn_wrapper a {
+  border-radius: 0 !important;
+}
+
+.ip_y2_btn_wrapper a {
+  border-radius: 24px;
+}
+
+.custom-carousel {
+  width: 100%;
+}
+
+.navbar .nav-item {
+  padding: 10px;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+a:hover {
+  text-decoration: none;
 }
 

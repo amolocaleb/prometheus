@@ -1494,7 +1494,7 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1825,6 +1825,28 @@ module.exports = {
   extend: extend,
   trim: trim
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
 
 
 /***/ }),
@@ -6270,28 +6292,6 @@ module.exports = {
 
 }));
 //# sourceMappingURL=bootstrap.js.map
-
-
-/***/ }),
-
-/***/ "./node_modules/is-buffer/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/is-buffer/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
 
 
 /***/ }),
@@ -69128,7 +69128,7 @@ function (_Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "carouselExampleIndicators",
-        "class": "carousel slide",
+        "class": "carousel slide custom-carousel",
         "data-ride": "carousel"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
         "class": "carousel-indicators"
@@ -69150,19 +69150,40 @@ function (_Component) {
         "class": "d-block w-100",
         src: "https://images.unsplash.com/photo-1539451652256-f485173cab9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
         alt: "First slide"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "carousel-caption d-none d-md-block"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "First slide label"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Nulla vitae elit libero, a pharetra augue mollis interdum."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "ip_y2_btn_wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#",
+        "class": "btn btn-default bg-red"
+      }, "Order Now")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "class": "carousel-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         "class": "d-block w-100",
         src: "https://images.unsplash.com/photo-1499778003268-cbafc6d08bab?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
         alt: "Second slide"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "carousel-caption d-none d-md-block"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "First slide label"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Nulla vitae elit libero, a pharetra augue mollis interdum."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "ip_y2_btn_wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#",
+        "class": "btn btn-default bg-red"
+      }, "Order Now")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "class": "carousel-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         "class": "d-block w-100",
         src: "https://images.unsplash.com/photo-1506354666786-959d6d497f1a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
         alt: "Third slide"
-      }))));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "carousel-caption d-none d-md-block"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "First slide label"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Nulla vitae elit libero, a pharetra augue mollis interdum."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "ip_y2_btn_wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#",
+        "class": "btn btn-default bg-red"
+      }, "Order Now"))))));
     }
   }]);
 
@@ -69303,10 +69324,21 @@ function (_Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "ip_y1"
+        "class": "ip_y1 d-flex"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("blockquote", {
+        "class": "blockquote flex-start"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        "class": "h1-main mb-0"
+      }, "We don't make pizzas here.we make art "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
+        "class": "blockquote-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "/images/chef.jpg"
-      }));
+        src: "/images/2.png"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "ip_y1_btn_wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#",
+        "class": "btn btn-default bg-red"
+      }, "Order Now")));
     }
   }]);
 
