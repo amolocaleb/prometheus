@@ -16,6 +16,7 @@ Route::get('/',function(){
     return view('front.index');
 });
 Route::get('/pizzalist','FrontController@index');
+Route::get('/pizzalist/{id}','FrontController@single');
 //Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

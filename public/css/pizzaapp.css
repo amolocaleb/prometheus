@@ -109,3 +109,20 @@ a:hover {
   text-decoration: none;
 }
 
+.pl_y1 {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.pizza-item {
+  flex-basis: 25%;
+  margin-right: 1rem;
+  height: 250px;
+  max-height: 250px;
+  margin-bottom: 1rem;
+}
+

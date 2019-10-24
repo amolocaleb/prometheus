@@ -20,6 +20,11 @@ class FrontController extends Controller
         return response($pizzas,200);
     }
 
+    public function single(Request $request)    {
+        $id =   $request->route('id');
+        
+        return;
+    }
     /**
      * Show the form for creating a new resource.
      *

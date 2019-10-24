@@ -1506,7 +1506,7 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1837,28 +1837,6 @@ module.exports = {
   extend: extend,
   trim: trim
 };
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
-/*!************************************************************!*\
-  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
 
 
 /***/ }),
@@ -6304,6 +6282,28 @@ module.exports = function isBuffer (obj) {
 
 }));
 //# sourceMappingURL=bootstrap.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/is-buffer/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/is-buffer/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
 
 
 /***/ }),
@@ -70193,28 +70193,45 @@ function (_Component) {
                 pList = pizzaArray.map(function (pizza, index) {
                   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
                     key: index,
-                    className: "classy"
-                  }, pizza.name);
+                    className: "pizza-item"
+                  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+                    className: "py_item"
+                  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+                    className: "card rounded"
+                  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+                    className: "card-image"
+                  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+                    className: "img-fluid",
+                    src: pizza.pizza_url,
+                    alt: "Photo of ".concat(pizza.name)
+                  })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+                    className: "card-body text-center"
+                  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+                    className: "ad-title m-auto"
+                  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", null, pizza.name), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+                    className: "prices"
+                  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "From ", pizza.LowPrice), " - ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "To ", pizza.MaxPrice))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+                    className: "btn btn-sm btn-danger",
+                    href: "/pizzalist/".concat(pizza.p_id)
+                  }, "Order Now")))));
                 });
-                console.log(pList);
                 this.setState({
                   pizzas: pList
                 });
-                console.log(this.state.pizzas);
-                _context.next = 15;
+                _context.next = 13;
                 break;
 
-              case 12:
-                _context.prev = 12;
+              case 10:
+                _context.prev = 10;
                 _context.t0 = _context["catch"](0);
                 console.log(_context.t0);
 
-              case 15:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[0, 12]]);
+        }, _callee, this, [[0, 10]]);
       }));
 
       function getPizzaList() {
@@ -70231,7 +70248,9 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("section", null, this.state.pizzas);
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("section", {
+        className: "pl_y1 container"
+      }, this.state.pizzas);
     }
   }]);
 

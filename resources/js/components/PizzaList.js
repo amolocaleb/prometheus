@@ -18,15 +18,33 @@ export default class PizzaList extends Component    {
             console.log({pizzaArray,response});
 
             let pList = pizzaArray.map( (pizza,index) => {
-               return( <div key={index} className="classy">
-                    {pizza.name}
+               return( <div key={index} className="pizza-item">
+                    
+
+                    <div className="py_item">
+                        <div className="card rounded">
+                            <div className="card-image">
+                                
+                                <img className="img-fluid" src={pizza.pizza_url} alt={`Photo of ${pizza.name}`} />
+                            </div>
+                        
+                            <div className="card-body text-center">
+                                <div className="ad-title m-auto">
+                                    <h5>{pizza.name}</h5>
+                                    <div className="prices">
+                                        <span>From {pizza.LowPrice}</span> - <span>To {pizza.MaxPrice}</span>
+                                    </div>
+                                </div>
+                                <a className="btn btn-sm btn-danger" href={`/pizzalist/${pizza.p_id}`}>Order Now</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>)
             });
-            console.log(pList)
            
-            this.setState({
-                pizzas:pList});
-            console.log(this.state.pizzas)
+           
+            this.setState({pizzas:pList});
+            
 
         } catch (error) {
             console.log(error);
@@ -41,7 +59,7 @@ export default class PizzaList extends Component    {
     
     render(){
         return (
-            <section>
+            <section className="pl_y1 container">
                 {this.state.pizzas}
             </section>
         )
