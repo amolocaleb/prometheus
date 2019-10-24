@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+
+Route::get('/',function(){
+    return view('front.index');
 });
+Route::get('/pizzalist','FrontController@index');
+//Auth::routes();
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

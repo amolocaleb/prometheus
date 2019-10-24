@@ -15,3 +15,4 @@ require('./bootstrap');
 require('./components/Example');
 require('./components/IndexPage');
 require('./components/CarouselComponent');
+require('./components/PizzaList');

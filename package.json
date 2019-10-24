@@ -7,12 +7,14 @@
     "test": "tests"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "line-awesome": "github:icons8/line-awesome",
     "module": "^1.2.5"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.0.0",
     "axios": "^0.19",
+    "babel-plugin-react-html-attrs": "^2.1.0",
     "bootstrap": "^4.1.0",
     "cross-env": "^5.1",
     "jquery": "^3.2",

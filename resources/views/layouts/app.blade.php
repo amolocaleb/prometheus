@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white m-0 p-0 custom-nav">
             <div class="container-fluid">
                 <a class="navbar-brand absolute-logo" href="{{ url('/') }}">
-                    <img src="{{'/images/logo.png'}}" alt="" srcset="">
+                    <img src="{{'/storage/logo.png'}}" alt="" srcset="">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -54,7 +54,7 @@
             </div>
         </nav>
 
-        <main class="main">
+        <main>
             @yield('content')
         </main>
     </div>
