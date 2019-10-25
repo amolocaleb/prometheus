@@ -1,6 +1,9 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import {clickHandler} from './FunctionalComponents';
+
 
 export default class PizzaList extends Component    {
 
@@ -32,10 +35,16 @@ export default class PizzaList extends Component    {
                                 <div className="ad-title m-auto">
                                     <h5>{pizza.name}</h5>
                                     <div className="prices">
-                                        <span>From {pizza.LowPrice}</span> - <span>To {pizza.MaxPrice}</span>
+                                        <span>From {pizza.small}</span> - <span>To {pizza.large}</span>
                                     </div>
                                 </div>
-                                <a className="btn btn-sm btn-danger" href={`/pizzalist/${pizza.p_id}`}>Order Now</a>
+                                <Route>
+                                    <Link to={`/pizzalist/${pizza.p_id}`} onClick={clickHandler}>
+                                    Order Now
+                                    </Link>
+                                </Route>
+                                
+                                {/* <a className="btn btn-sm btn-danger" href={`/pizzalist/${pizza.p_id}`}>Order Now</a> */}
                             </div>
                         </div>
                     </div>
@@ -59,7 +68,7 @@ export default class PizzaList extends Component    {
     
     render(){
         return (
-            <section className="pl_y1 container">
+            <section className="pl_y1">
                 {this.state.pizzas}
             </section>
         )

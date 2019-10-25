@@ -12,7 +12,8 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Example');
-require('./components/IndexPage');
-require('./components/CarouselComponent');
-require('./components/PizzaList');
+// require('./components/Example');
+require('./components/App');
+// require('./components/CarouselComponent');
+// require('./components/PizzaList');
+// require('./components/PizzaList');

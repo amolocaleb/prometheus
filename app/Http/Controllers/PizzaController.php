@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use \Illuminate\Support\Facades\DB;
-use App\Front;
+
+use App\Pizza;
 use Illuminate\Http\Request;
 
-class FrontController extends Controller
+class PizzaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,16 +14,25 @@ class FrontController extends Controller
      */
     public function index()
     {
-        $pizzas = DB::select("SELECT p.id as 'p_id',p.pizza_url,(SELECT price from pizza_sizes WHERE pizza_sizes.pizza_id=p_id AND pizza_sizes.size='S') as 'LowPrice',p.name,(SELECT price from pizza_sizes WHERE pizza_sizes.pizza_id=p_id AND pizza_sizes.size='L') as 'MaxPrice' FROM pizzas p");
-
+        
+        $pizzas =   Pizza::pizzalist();   
         
         return response($pizzas,200);
     }
 
     public function single(Request $request)    {
         $id =   $request->route('id');
-        
-        return;
+        $pizza = Pizza::pizzalist($id); 
+        $drinks =   Pizza::drinks();
+        $toppings   =   Pizza::toppings();
+        // $pizza  =   array_merge($pizza,$drinks,$toppings);
+
+      
+        return response([
+                            "pizza"    =>  $pizza,
+                            "drinks"    =>  $drinks,
+                            "toppings"  =>  $toppings
+        ],200);
     }
     /**
      * Show the form for creating a new resource.
