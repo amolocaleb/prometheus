@@ -12,11 +12,9 @@
 */
 
 
-Route::get('/',function(){
-    return view('front.index');
-});
-Route::get('/pizzalist','PizzaController@index');
-Route::get('/pizzalist/{id}','PizzaController@single');
+Route::any('{path}','HomeController@index')->where('path','^(?!api).*$');
+// Route::get('/pizzalist','PizzaController@index');
+// Route::get('/pizzalist/{id}','PizzaController@single');
 //Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

@@ -48,7 +48,3 @@ export default class Carousel extends Component {
         );
     }
 }
-
-// if (document.querySelector("#pizzaCarousel"))   {
-//     ReactDOM.render(<CarouselComponent />,document.querySelector("#pizzaCarousel"));
-// }

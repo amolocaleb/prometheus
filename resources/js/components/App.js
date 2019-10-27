@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
-import IndexPage from './IndexPage';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PizzaList from './PizzaList';
-import {SinglePizza} from './FunctionalComponents';
+import SinglePizza from './FunctionalComponents';
+import Home from './home';
 
 
 
 const App = ()  =>  (
     <BrowserRouter>
         <Switch>
-            <Route exact path="/" component={IndexPage,PizzaList}/>
+            <Route exact path="/" component={Home}/>
             <Route exact path="/pizzalist" component={PizzaList}/>
             <Route exact path="/pizzalist/:id" component={SinglePizza}/>
             
@@ -18,4 +18,4 @@ const App = ()  =>  (
     </BrowserRouter>
 );
 
-ReactDOM.render(<App />,document.querySelector("#the_content"));
+ReactDOM.render(<App />,document.querySelector(".app"));

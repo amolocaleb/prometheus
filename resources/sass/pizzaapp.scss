@@ -107,10 +107,81 @@ a:hover{
     height: 250px;
     margin-bottom: 1rem;
     display: inline-table;
-    
+    color: black;
     flex-basis: 250px;
 }
 
 .card-image .img-fluid {
     height: 200px !important;
+}
+
+.b_y1{
+    margin-top: 100px;
+    height: 100%;
+}
+
+.app{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.b_y1_pizza{
+    display: flex;
+    flex-direction: row;
+    height: inherit;
+}
+.b_y1_pizza_img,.b_y1_pizza_details{
+    flex-basis: 49%;
+}
+
+.b_y1_pizza_img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* justify-content: space-evenly; */
+}
+
+
+input[type=radio] {
+    border: 1px solid rgb(219, 143, 143);
+    padding: 0.5em;
+    -webkit-appearance: none;
+  }
+  
+  input[type=radio]:checked {
+    background:#f37d7d;
+    outline:red;
+    background-size: 9px 9px;
+  }
+  
+  input[type=radio]:focus {
+    outline-color: transparent;
+  }
+
+  .sizes {
+    display: flex;
+    flex-direction: row;
+}
+  
+  
+
+fieldset
+{
+    padding:20px;
+    display:inline-block;
+
+    > label{
+        padding: {
+            left: 20px;
+            right: 20px;
+        };
+        line-height: 2rem;
+        vertical-align: middle;
+    }
+}
+
+
+input[type="radio"] {
+    margin-left:20px;
+    border:1px solid #888;
 }

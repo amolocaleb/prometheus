@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 
-import CarouselComponent from './Carousel';
+
 
 export default class IndexPage extends Component {
     render() {
         return (
-            <div class="main">
+            
                 <div id="chefContainer">
                     <div className="ip_y1 d-flex">
                         <blockquote className="blockquote flex-start">
@@ -20,12 +20,7 @@ export default class IndexPage extends Component {
                         
                     </div>
                 </div>
-                <CarouselComponent />
-            </div>
+            
         );
     }
 }
-
-// if (document.querySelector('#chefContainer'))   {
-//     ReactDOM.render(<IndexPage />,document.querySelector('#chefContainer'));
-// }

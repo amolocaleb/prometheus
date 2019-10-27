@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
+use App\Pizza;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Pizza;
+
 class PizzaController extends Controller
 {
     /**
@@ -12,9 +13,14 @@ class PizzaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
+        
+        $pizzas =   Pizza::pizzalist();   
+        
+        return response($pizzas,200);
+    }
 
-
-    
     public function single(Request $request)    {
         $id =   $request->route('id');
         $pizza = Pizza::pizzalist($id); 
@@ -23,16 +29,11 @@ class PizzaController extends Controller
         // $pizza  =   array_merge($pizza,$drinks,$toppings);
 
       
-        return view('front.single',[
+        return response([
                             "pizza"    =>  $pizza,
                             "drinks"    =>  $drinks,
                             "toppings"  =>  $toppings
-        ]);
-    }
-
-    public function index()
-    {
-        //
+        ],200);
     }
 
     /**
@@ -49,10 +50,10 @@ class PizzaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Pizza  $pizza
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pizza $pizza)
     {
         //
     }
@@ -61,10 +62,10 @@ class PizzaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Pizza  $pizza
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pizza $pizza)
     {
         //
     }
@@ -72,10 +73,10 @@ class PizzaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Pizza  $pizza
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pizza $pizza)
     {
         //
     }

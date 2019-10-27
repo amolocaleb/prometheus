@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
-import ReactDOM from 'react-dom';
+
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import {clickHandler} from './FunctionalComponents';
+import  SinglePizza from './FunctionalComponents';
 
 
 export default class PizzaList extends Component    {
@@ -16,12 +16,13 @@ export default class PizzaList extends Component    {
     }
     async getPizzaList(){
         try {
-            let response = await axios.get('/pizzalist');
+            let response = await axios.get('/api/pizzalist');
             let pizzaArray = response.data;
-            console.log({pizzaArray,response});
+            
 
-            let pList = pizzaArray.map( (pizza,index) => {
-               return( <div key={index} className="pizza-item">
+            let pList = pizzaArray.map( (pizza,index) => ( <a key={index} 
+                            className="pizza-item " 
+                            href={`/pizzalist/${pizza.p_id}`}>
                     
 
                     <div className="py_item">
@@ -39,17 +40,23 @@ export default class PizzaList extends Component    {
                                     </div>
                                 </div>
                                 <Route>
-                                    <Link to={`/pizzalist/${pizza.p_id}`} onClick={clickHandler}>
+                                
+                                    <button 
+                                    role="link"
+                                    href={`/pizzalist/${pizza.p_id}`}
+                                    className="btn btn-sm btn-danger text-white"
+                                    onClick={SinglePizza}
+                                    >
                                     Order Now
-                                    </Link>
+                                    </button>
                                 </Route>
                                 
-                                {/* <a className="btn btn-sm btn-danger" href={`/pizzalist/${pizza.p_id}`}>Order Now</a> */}
+                                
                             </div>
                         </div>
                     </div>
-                </div>)
-            });
+                </a>)
+            );
            
            
             this.setState({pizzas:pList});
@@ -75,6 +82,6 @@ export default class PizzaList extends Component    {
     }
 }
 
-if  (document.querySelector('.pizza-list')) {
-    ReactDOM.render(<PizzaList /> ,document.querySelector('.pizza-list'));
-}
+// if  (document.querySelector('.pizza-list')) {
+//     ReactDOM.render(<PizzaList /> ,document.querySelector('.pizza-list'));
+// }

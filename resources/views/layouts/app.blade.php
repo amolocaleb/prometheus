@@ -15,6 +15,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+
 
     <!-- Styles -->
     <link href="{{ p_asset('css/app.css') }}" rel="stylesheet">
@@ -22,7 +25,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white m-0 p-0 custom-nav">
+        <nav class="navbar navbar-expand-md navbar-light  m-0 p-0 custom-nav">
             <div class="container-fluid">
                 <a class="navbar-brand absolute-logo" href="{{ url('/') }}">
                     <img src="{{'/storage/logo.png'}}" alt="" srcset="">
@@ -41,22 +44,20 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <a href="" class="text-white">Home</i></a>
+                            <a href="" class="text-gray">Home</i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="text-white">About Us</a>
+                            <a href="" class="text-gray">About Us</a>
                         </li>
                        <li class="nav-item">
-                           <a href="" class="text-white">Cart<i class="la la-shopping-cart text-white"></i></a>
+                           <a href="" class="text-gray">Cart<i class="la la-shopping-cart text-white"></i></a>
                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
-
-        <main id="the_content">
-            @yield('content')
-        </main>
+        <div class="app"></div>
+        
     </div>
 </body>
 </html>
