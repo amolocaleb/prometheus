@@ -207,3 +207,9 @@ input[type=radio] {
   border: 1px solid #888;
 }
 
+.btn {
+  font-family: "Roboto", sans-serif;
+  /* font-size: medium; */
+  font-weight: 600;
+}
+

@@ -1,24 +1,45 @@
 import React,{Component} from 'react'
 import axios from 'axios';
-import Radio from '@material-ui/core/Radio';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 
-export default  class SinglePizza extends Component  {
+
+export   class SinglePizza extends Component  {
 
     constructor(props)  {
         super(props);
         
         this.state = {singleData:{}}
+        this.handleChange   =   this.handleChange.bind(this);
     }
+    
+    async handleChange(evt){
+        // evt.persist();
 
-    handleChange(evt){
-        console.log(evt);
-        // this.setState({[evt.target.name]:evt.target.value})
+        const { type,name, value } = evt.target;
+        console.log({type, name, value });
+        if  ('radio'    === type    )   {
+            this.state[name]    ||  await this.setState({[name]:''});
+            if  (value  !==  this.state[name])   {
+                this.setState({[name]:value});
+            }
+        }else   {
+            
+            this.state[name] ||   await this.setState({[name]:[]});
+            //  debugger;
+            let index =   this.state[name].indexOf(value);
+            if  (index  > -1) {
+                this.state[name].splice(index,1);
+                // this.state[name].indexOf(value).remove();
+            }else{
+                const current   =   this.state[name];
+                current.push(value);
+                this.setState({[name]:current});
+            }
+
+            console.log(this.state[name])
+        }
+
+        console.log(this.state)
+        
     }
 
     async  getPizza()   {
@@ -79,21 +100,25 @@ export default  class SinglePizza extends Component  {
                 
                 
             ));
-            let toppings   =    toppingsArray.forEach((e,i) =>{
-                
-                        <option key={i} value={e.id} data-value={e.price}>{e.name}</option>
-                    
-            })
+           
             let toppingsWrapper =   <div className="form-group">
-                                        <select name="toppings" multiple>
-                                            {toppings}
+                                        <select name="toppings" multiple onChange={this.handleChange}>
+                                            {toppingsArray.map((el,i)   =>  
+                                                <option key={i} value={el.id} data-value={el.price}>{el.name}</option>
+                                            )}
                                         </select>                
                                     </div>
                                     ;
+            let drinks  =   <div className="form-group">
+                                <select name="drinks" multiple onChange={this.handleChange}>
+                                    {drinksArray.map((el,i)   =>  
+                                        <option key={i} value={el.id} data-value={el.price}>{el.name}</option>
+                                    )}
+                                </select>                
+                            </div>
             this.setState({singleData:{img:<div className="b_y1_pizza_img"><img src={pizzaArray[0].pizza_url} className="img-fluid"/></div>,
-                                      pizza,toppingsWrapper}})
-            console.log({pizzaArray,toppingsArray,drinksArray});
-            // return response.data;
+                                      pizza,toppingsWrapper,drinks}})
+            
         } catch (error) {
             console.log(error);
         }
@@ -103,6 +128,13 @@ export default  class SinglePizza extends Component  {
         this.getPizza()
     }
     
+    actionButton()  {
+        return (
+            <div className="action-button">
+                <a href="#" className="btn btn-sm btn-danger">Checkout</a>
+            </div>
+        )
+    }
     
     render()    {
         document.querySelectorAll(".navbar a").forEach(el => {
@@ -116,6 +148,8 @@ export default  class SinglePizza extends Component  {
                 <div  className="b_y1_pizza_details">
                 {this.state.singleData.pizza}
                 {this.state.singleData.toppingsWrapper}
+                {this.state.singleData.drinks}
+                {this.actionButton()}
                 </div>
                 
                </div>
@@ -131,5 +165,15 @@ const clickHandler = (evt)  => {
     console.log(evt)
 }
 
-
+export  function ToppingsList(props)  {
+    console.log(props.optionData)
+    let toppings   =    props.optionData.map((e,i) =>{
+                
+        <option key={i} value={e.id} data-value={e.price}>{e.name}</option>
+    
+})
+    return (
+        {toppings}
+    )
+}
 // export   {SinglePizza};

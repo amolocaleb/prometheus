@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import  SinglePizza from './FunctionalComponents';
+import  {SinglePizza} from './FunctionalComponents';
 
 
 export default class PizzaList extends Component    {

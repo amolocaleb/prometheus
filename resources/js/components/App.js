@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PizzaList from './PizzaList';
-import SinglePizza from './FunctionalComponents';
+import {SinglePizza} from './FunctionalComponents';
 import Home from './home';
 
 
