@@ -12,10 +12,13 @@ export   class SinglePizza extends Component  {
     }
     
     async handleChange(evt){
-        // evt.persist();
-
-        const { type,name, value } = evt.target;
-        console.log({type, name, value });
+        
+        
+        const { target } = evt;
+        this.handleStyles(target);
+        // console.log(target); return;
+        const {dataset:{name},value,type}    =   target;
+        console.log([name,value]);
         if  ('radio'    === type    )   {
             this.state[name]    ||  await this.setState({[name]:''});
             if  (value  !==  this.state[name])   {
@@ -102,20 +105,36 @@ export   class SinglePizza extends Component  {
             ));
            
             let toppingsWrapper =   <div className="form-group">
-                                        <select name="toppings" multiple onChange={this.handleChange}>
-                                            {toppingsArray.map((el,i)   =>  
-                                                <option key={i} value={el.id} data-value={el.price}>{el.name}</option>
-                                            )}
-                                        </select>                
-                                    </div>
-                                    ;
-            let drinks  =   <div className="form-group">
-                                <select name="drinks" multiple onChange={this.handleChange}>
-                                    {drinksArray.map((el,i)   =>  
-                                        <option key={i} value={el.id} data-value={el.price}>{el.name}</option>
-                                    )}
-                                </select>                
-                            </div>
+                                        <fieldset className="border p-2 custom-fieldset">
+                                            <legend>Extra Toppings</legend>
+                                            {toppingsArray.map((el,i)   =>  {
+                                              return(  <p  key={i}>
+                                                    <label>
+                                                        <input type="checkbox" value={el.id} data-name="toppings" className="custom_checkbox" data-price={el.price} onChange={this.handleChange}/> {el.name}
+                                                    </label>
+                                                </p>);
+                                            })}
+                                        </fieldset>
+                                    </div>;
+            let drinks =   <div className="form-group">
+                                        <fieldset className="border p-2 custom-fieldset">
+                                            <legend>Drinks</legend>
+                                            {drinksArray.map((el,i)   =>  {
+                                              return(  <p  key={i}>
+                                                    <label>
+                                                        <input type="checkbox" value={el.id} data-name="drinks" className="custom_checkbox"  data-price={el.price} onChange={this.handleChange}/> {el.name}
+                                                    </label>
+                                                </p>);
+                                            })}
+                                        </fieldset>
+                                    </div>;
+            // let drinks  =   <div className="form-group">
+            //                     <select name="drinks" multiple onChange={this.handleChange}>
+            //                         {drinksArray.map((el,i)   =>  
+            //                             <option key={i} value={el.id} data-value={el.price}>{el.name}</option>
+            //                         )}
+            //                     </select>                
+            //                 </div>
             this.setState({singleData:{img:<div className="b_y1_pizza_img"><img src={pizzaArray[0].pizza_url} className="img-fluid"/></div>,
                                       pizza,toppingsWrapper,drinks}})
             
@@ -134,6 +153,14 @@ export   class SinglePizza extends Component  {
                 <a href="#" className="btn btn-sm btn-danger">Checkout</a>
             </div>
         )
+    }
+
+    handleStyles(target)  {
+        const el    =   target;
+        console.log(el.checked)
+       return el.checked  ?   
+        el.parentNode.parentNode.cssText    =   "background:#e4584b;color:#fff":
+        el.parentNode.parentNode.cssText    =   "background:none;color:black";
     }
     
     render()    {

@@ -74138,55 +74138,52 @@ function (_Component) {
       var _handleChange = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(evt) {
-        var _evt$target, type, name, value, index, current;
-
+        var target, name, value, type, index, current;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                // evt.persist();
-                _evt$target = evt.target, type = _evt$target.type, name = _evt$target.name, value = _evt$target.value;
-                console.log({
-                  type: type,
-                  name: name,
-                  value: value
-                });
+                target = evt.target;
+                this.handleStyles(target); // console.log(target); return;
+
+                name = target.dataset.name, value = target.value, type = target.type;
+                console.log([name, value]);
 
                 if (!('radio' === type)) {
-                  _context.next = 10;
+                  _context.next = 12;
                   break;
                 }
 
                 _context.t0 = this.state[name];
 
                 if (_context.t0) {
-                  _context.next = 7;
+                  _context.next = 9;
                   break;
                 }
 
-                _context.next = 7;
+                _context.next = 9;
                 return this.setState(_defineProperty({}, name, ''));
 
-              case 7:
+              case 9:
                 if (value !== this.state[name]) {
                   this.setState(_defineProperty({}, name, value));
                 }
 
-                _context.next = 17;
+                _context.next = 19;
                 break;
 
-              case 10:
+              case 12:
                 _context.t1 = this.state[name];
 
                 if (_context.t1) {
-                  _context.next = 14;
+                  _context.next = 16;
                   break;
                 }
 
-                _context.next = 14;
+                _context.next = 16;
                 return this.setState(_defineProperty({}, name, []));
 
-              case 14:
+              case 16:
                 //  debugger;
                 index = this.state[name].indexOf(value);
 
@@ -74200,10 +74197,10 @@ function (_Component) {
 
                 console.log(this.state[name]);
 
-              case 17:
+              case 19:
                 console.log(this.state);
 
-              case 18:
+              case 20:
               case "end":
                 return _context.stop();
             }
@@ -74279,30 +74276,43 @@ function (_Component) {
                 });
                 toppingsWrapper = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
                   className: "form-group"
-                }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-                  name: "toppings",
-                  multiple: true,
-                  onChange: this.handleChange
-                }, toppingsArray.map(function (el, i) {
-                  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-                    key: i,
+                }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("fieldset", {
+                  className: "border p-2 custom-fieldset"
+                }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("legend", null, "Extra Toppings"), toppingsArray.map(function (el, i) {
+                  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+                    key: i
+                  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+                    type: "checkbox",
                     value: el.id,
-                    "data-value": el.price
-                  }, el.name);
+                    "data-name": "toppings",
+                    className: "custom_checkbox",
+                    "data-price": el.price,
+                    onChange: _this2.handleChange
+                  }), " ", el.name));
                 })));
                 drinks = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
                   className: "form-group"
-                }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-                  name: "drinks",
-                  multiple: true,
-                  onChange: this.handleChange
-                }, drinksArray.map(function (el, i) {
-                  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-                    key: i,
+                }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("fieldset", {
+                  className: "border p-2 custom-fieldset"
+                }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("legend", null, "Drinks"), drinksArray.map(function (el, i) {
+                  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+                    key: i
+                  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+                    type: "checkbox",
                     value: el.id,
-                    "data-value": el.price
-                  }, el.name);
-                })));
+                    "data-name": "drinks",
+                    className: "custom_checkbox",
+                    "data-price": el.price,
+                    onChange: _this2.handleChange
+                  }), " ", el.name));
+                }))); // let drinks  =   <div className="form-group">
+                //                     <select name="drinks" multiple onChange={this.handleChange}>
+                //                         {drinksArray.map((el,i)   =>  
+                //                             <option key={i} value={el.id} data-value={el.price}>{el.name}</option>
+                //                         )}
+                //                     </select>                
+                //                 </div>
+
                 this.setState({
                   singleData: {
                     img: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -74352,6 +74362,13 @@ function (_Component) {
         href: "#",
         className: "btn btn-sm btn-danger"
       }, "Checkout"));
+    }
+  }, {
+    key: "handleStyles",
+    value: function handleStyles(target) {
+      var el = target;
+      console.log(el.checked);
+      return el.checked ? el.parentNode.parentNode.cssText = "background:#e4584b;color:#fff" : el.parentNode.parentNode.cssText = "background:none;color:black";
     }
   }, {
     key: "render",

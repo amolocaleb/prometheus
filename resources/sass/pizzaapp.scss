@@ -6,6 +6,14 @@ html,body{
     width: 100%;
     height: 100%;
 }
+
+input{
+    vertical-align: middle;
+}
+
+label{
+    margin-bottom: 0;
+}
 #chefContainer,#pizzaCarousel{
     display: flex;
     
@@ -191,3 +199,39 @@ input[type="radio"] {
     /* font-size: medium; */
     font-weight: 600;
 }
+.custom-fieldset{
+    display: block;
+
+    legend{
+        width: inherit;
+    }
+
+    p{
+    margin-right: 1rem;
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid #f274745c;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    min-width: 60px;
+
+        label{
+            font-family: 'Rubik', sans-serif;
+            text-transform: uppercase;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 10px;
+            input[type=checkbox]{
+                display: none;
+                
+            }
+        }
+
+        &:hover{
+            background: #e4584b;
+        }
+
+    }
+}
+
