@@ -1598,7 +1598,7 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1929,6 +1929,28 @@ module.exports = {
   extend: extend,
   trim: trim
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
 
 
 /***/ }),
@@ -7454,28 +7476,6 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 
 module.exports = hoistNonReactStatics;
-
-
-/***/ }),
-
-/***/ "./node_modules/is-buffer/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/is-buffer/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
 
 
 /***/ }),
@@ -74128,6 +74128,11 @@ function (_Component) {
       singleData: {}
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    backpack({
+      pizza: {
+        qty: 1
+      }
+    });
     return _this;
   }
 
@@ -74359,9 +74364,63 @@ function (_Component) {
       }, "Checkout"));
     }
   }, {
+    key: "increDecrease",
+    value: function increDecrease(evt, increase) {
+      console.log(increase);
+
+      if (!increase) {
+        if (0 !== backpack().pizza.qty) backpack().pizza.qty -= 1;
+      } else {
+        backpack().pizza.qty += 1;
+      }
+
+      console.log(backpack());
+    }
+  }, {
     key: "handleStyles",
     value: function handleStyles(target) {
       return target.checked && target.type !== 'radio' ? target.parentNode.parentNode.style.cssText = "background:#e4584b;color:#fff" : target.parentNode.parentNode.style.cssText = "background:none;color:black";
+    }
+  }, {
+    key: "basket",
+    value: function basket() {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "basket"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+        className: "table table-dark"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col"
+      }, "Item"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col"
+      }, "Qty"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col"
+      }, "Price"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col"
+      }, "Actions"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "row"
+      }, "Chicken Pizza"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "basket-item-qty"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "basket-btn-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "basket_btn_minus",
+        onClick: this.increDecrease.bind(null, false)
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+        className: "la la-minus"
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "basket_qty"
+      }, backpack().pizza.qty), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "basket_btn_plus",
+        onClick: this.increDecrease.bind(null, true)
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+        className: "la la-plus"
+      }))))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, " ", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "basket_price"
+      }, "700")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "basket_action_item btn btn-danger btn-sm"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+        className: "la la-trash"
+      })))))));
     }
   }, {
     key: "render",
@@ -74375,13 +74434,28 @@ function (_Component) {
         className: "b_y1_pizza"
       }, this.state.singleData.img, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "b_y1_pizza_details"
-      }, this.state.singleData.pizza, this.state.singleData.toppingsWrapper, this.state.singleData.drinks, this.actionButton())));
+      }, this.state.singleData.pizza, this.state.singleData.toppingsWrapper, this.basket(), this.actionButton())));
     }
   }]);
 
   return SinglePizza;
 }(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 ;
+
+var backpack = function () {
+  var state = {};
+  return function () {
+    var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    if (data !== null) {
+      for (var key in data) {
+        state[key] = data[key];
+      }
+    }
+
+    return state;
+  };
+}();
 
 /***/ }),
 

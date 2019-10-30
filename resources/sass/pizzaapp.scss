@@ -242,3 +242,18 @@ input[type="radio"] {
     }
 }
 
+.basket {
+    display: flex;
+    padding: 10px 15px;
+    background: #F8F8F8;
+
+    
+}
+
+span.basket-btn-wrapper {
+    background: #ccc;
+    color: #444;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 20px;
+}
