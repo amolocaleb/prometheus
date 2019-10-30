@@ -74073,13 +74073,12 @@ function (_Component) {
 /*!*********************************************************!*\
   !*** ./resources/js/components/FunctionalComponents.js ***!
   \*********************************************************/
-/*! exports provided: SinglePizza, ToppingsList */
+/*! exports provided: SinglePizza */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SinglePizza", function() { return SinglePizza; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ToppingsList", function() { return ToppingsList; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -74250,6 +74249,7 @@ function (_Component) {
                     className: "w-auto"
                   }, "Pizza Sizes"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                     type: "radio",
+                    "data-name": "size",
                     name: "size",
                     id: "sizeSmall",
                     value: e.small,
@@ -74258,6 +74258,7 @@ function (_Component) {
                     htmlFor: "sizeSmall"
                   }, "S"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                     type: "radio",
+                    "data-name": "size",
                     name: "size",
                     id: "sizeMed",
                     value: e.medium,
@@ -74266,6 +74267,7 @@ function (_Component) {
                     htmlFor: "sizeMed"
                   }, "M"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
                     type: "radio",
+                    "data-name": "size",
                     name: "size",
                     id: "sizeLarge",
                     value: e.large,
@@ -74305,14 +74307,7 @@ function (_Component) {
                     "data-price": el.price,
                     onChange: _this2.handleChange
                   }), " ", el.name));
-                }))); // let drinks  =   <div className="form-group">
-                //                     <select name="drinks" multiple onChange={this.handleChange}>
-                //                         {drinksArray.map((el,i)   =>  
-                //                             <option key={i} value={el.id} data-value={el.price}>{el.name}</option>
-                //                         )}
-                //                     </select>                
-                //                 </div>
-
+                })));
                 this.setState({
                   singleData: {
                     img: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -74366,9 +74361,7 @@ function (_Component) {
   }, {
     key: "handleStyles",
     value: function handleStyles(target) {
-      var el = target;
-      console.log(el.checked);
-      return el.checked ? el.parentNode.parentNode.cssText = "background:#e4584b;color:#fff" : el.parentNode.parentNode.cssText = "background:none;color:black";
+      return target.checked && target.type !== 'radio' ? target.parentNode.parentNode.style.cssText = "background:#e4584b;color:#fff" : target.parentNode.parentNode.style.cssText = "background:none;color:black";
     }
   }, {
     key: "render",
@@ -74389,25 +74382,6 @@ function (_Component) {
   return SinglePizza;
 }(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 ;
-
-var clickHandler = function clickHandler(evt) {
-  evt.preventDefault();
-  console.log(evt);
-};
-
-function ToppingsList(props) {
-  console.log(props.optionData);
-  var toppings = props.optionData.map(function (e, i) {
-    react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-      key: i,
-      value: e.id,
-      "data-value": e.price
-    }, e.name);
-  });
-  return {
-    toppings: toppings
-  };
-} // export   {SinglePizza};
 
 /***/ }),
 

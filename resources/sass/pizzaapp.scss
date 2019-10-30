@@ -140,13 +140,18 @@ a:hover{
 }
 .b_y1_pizza_img,.b_y1_pizza_details{
     flex-basis: 49%;
+    padding: {
+        left: 20px;
+        right: 20px;
+    };
 }
 
 .b_y1_pizza_img {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* justify-content: space-evenly; */
+    
+    overflow: hidden;
 }
 
 
@@ -210,8 +215,8 @@ input[type="radio"] {
     margin-right: 1rem;
     display: inline-block;
     border-radius: 5px;
-    border: 1px solid #f274745c;
-    padding: 10px;
+    border: transparent;
+    background: #F8F8F8;
     text-align: center;
     cursor: pointer;
     min-width: 60px;
@@ -222,6 +227,7 @@ input[type="radio"] {
             font-weight: 600;
             cursor: pointer;
             font-size: 10px;
+            padding: 10px;
             input[type=checkbox]{
                 display: none;
                 
@@ -230,6 +236,7 @@ input[type="radio"] {
 
         &:hover{
             background: #e4584b;
+            color: #fff;
         }
 
     }

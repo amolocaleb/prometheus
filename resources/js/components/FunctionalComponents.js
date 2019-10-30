@@ -18,6 +18,7 @@ export   class SinglePizza extends Component  {
         this.handleStyles(target);
         // console.log(target); return;
         const {dataset:{name},value,type}    =   target;
+        
         console.log([name,value]);
         if  ('radio'    === type    )   {
             this.state[name]    ||  await this.setState({[name]:''});
@@ -46,7 +47,7 @@ export   class SinglePizza extends Component  {
     }
 
     async  getPizza()   {
-        // const [selectedValue,setselectedValue]  =   this.state.a;
+       
         try {
             const response = await axios.get(`/api/pizzalist/${this.props.match.params.id}`);
             const pizzaArray = response.data.pizza;
@@ -61,6 +62,7 @@ export   class SinglePizza extends Component  {
                         <legend className="w-auto">Pizza Sizes</legend>
                             <input type = "radio"
                     
+                                    data-name = "size"
                                     name = "size"
                     
                                     id = "sizeSmall"
@@ -73,6 +75,7 @@ export   class SinglePizza extends Component  {
                     
                             <input type = "radio"
                     
+                                    data-name = "size"
                                     name = "size"
                     
                                     id = "sizeMed"
@@ -85,6 +88,7 @@ export   class SinglePizza extends Component  {
                     
                             <input type = "radio"
                     
+                                    data-name = "size"
                                     name = "size"
                     
                                     id = "sizeLarge"
@@ -128,13 +132,7 @@ export   class SinglePizza extends Component  {
                                             })}
                                         </fieldset>
                                     </div>;
-            // let drinks  =   <div className="form-group">
-            //                     <select name="drinks" multiple onChange={this.handleChange}>
-            //                         {drinksArray.map((el,i)   =>  
-            //                             <option key={i} value={el.id} data-value={el.price}>{el.name}</option>
-            //                         )}
-            //                     </select>                
-            //                 </div>
+           
             this.setState({singleData:{img:<div className="b_y1_pizza_img"><img src={pizzaArray[0].pizza_url} className="img-fluid"/></div>,
                                       pizza,toppingsWrapper,drinks}})
             
@@ -156,11 +154,10 @@ export   class SinglePizza extends Component  {
     }
 
     handleStyles(target)  {
-        const el    =   target;
-        console.log(el.checked)
-       return el.checked  ?   
-        el.parentNode.parentNode.cssText    =   "background:#e4584b;color:#fff":
-        el.parentNode.parentNode.cssText    =   "background:none;color:black";
+        
+       return (target.checked && target.type !== 'radio')  ?   
+        target.parentNode.parentNode.style.cssText    =   "background:#e4584b;color:#fff":
+        target.parentNode.parentNode.style.cssText    =   "background:none;color:black";
     }
     
     render()    {
@@ -185,22 +182,3 @@ export   class SinglePizza extends Component  {
     }
     
 };
-
-const clickHandler = (evt)  => {
-    evt.preventDefault();
-    
-    console.log(evt)
-}
-
-export  function ToppingsList(props)  {
-    console.log(props.optionData)
-    let toppings   =    props.optionData.map((e,i) =>{
-                
-        <option key={i} value={e.id} data-value={e.price}>{e.name}</option>
-    
-})
-    return (
-        {toppings}
-    )
-}
-// export   {SinglePizza};
