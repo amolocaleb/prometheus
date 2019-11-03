@@ -1,183 +1,49 @@
-import React, { Component } from 'react'
-import axios from 'axios';
+import React, {  useContext, useState }    from 'react'
+import { Link } from "react-router-dom";
+import { PizzaContext, PizzaProvider } from './PizzaContext';
 
-
-export class SinglePizza extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = { singleData: {} }
-        this.handleChange = this.handleChange.bind(this);
-        backpack({pizza:{qty:1}});
-    }
-
-    async handleChange(evt) {
-
-
-        const { target } = evt;
-        this.handleStyles(target);
-        // console.log(target); return;
-        const { dataset: { name }, value, type } = target;
-
-        console.log([name, value]);
-        if ('radio' === type) {
-            this.state[name] || await this.setState({ [name]: '' });
-            if (value !== this.state[name]) {
-                this.setState({ [name]: value });
-            }
-        } else {
-
-            this.state[name] || await this.setState({ [name]: [] });
-            //  debugger;
-            let index = this.state[name].indexOf(value);
-            if (index > -1) {
-                this.state[name].splice(index, 1);
-                // this.state[name].indexOf(value).remove();
-            } else {
-                const current = this.state[name];
-                current.push(value);
-                this.setState({ [name]: current });
-            }
-
-            console.log(this.state[name])
-        }
-
-        console.log(this.state)
-
-    }
-
-    async  getPizza() {
-
-        try {
-            const response = await axios.get(`/api/pizzalist/${this.props.match.params.id}`);
-            const pizzaArray = response.data.pizza;
-            const toppingsArray = response.data.toppings;
-            const drinksArray = response.data.drinks;
-            
-            let pizza = pizzaArray.map((e, i) => (
-                <div key={i}>
-                    <h1 key={i} className="h2">{e.name}</h1>
-                    <div className="sizes">
-                        <fieldset className="border p-2">
-                            <legend className="w-auto">Pizza Sizes</legend>
-                            <input type="radio"
-
-                                data-name="size"
-                                name="size"
-
-                                id="sizeSmall"
-
-                                value={e.small}
-
-                                onChange={this.handleChange} />
-
-                            <label htmlFor="sizeSmall">S</label>
-
-                            <input type="radio"
-
-                                data-name="size"
-                                name="size"
-
-                                id="sizeMed"
-
-                                value={e.medium}
-
-                                onChange={this.handleChange} />
-
-                            <label htmlFor="sizeMed">M</label>
-
-                            <input type="radio"
-
-                                data-name="size"
-                                name="size"
-
-                                id="sizeLarge"
-
-                                value={e.large}
-
-                                onChange={this.handleChange} />
-
-                            <label htmlFor="sizeLarge">L</label>
-
-                        </fieldset>
-
-                    </div>
-                </div>
-
-
-
-            ));
-
-            let toppingsWrapper = <div className="form-group">
-                <fieldset className="border p-2 custom-fieldset">
-                    <legend>Extra Toppings</legend>
-                    {toppingsArray.map((el, i) => {
-                        return (<p key={i}>
-                            <label>
-                                <input type="checkbox" value={el.id} data-name="toppings" className="custom_checkbox" data-price={el.price} onChange={this.handleChange} /> {el.name}
-                            </label>
-                        </p>);
-                    })}
-                </fieldset>
-            </div>;
-            let drinks = <div className="form-group">
-                <fieldset className="border p-2 custom-fieldset">
-                    <legend>Drinks</legend>
-                    {drinksArray.map((el, i) => {
-                        return (<p key={i}>
-                            <label>
-                                <input type="checkbox" value={el.id} data-name="drinks" className="custom_checkbox" data-price={el.price} onChange={this.handleChange} /> {el.name}
-                            </label>
-                        </p>);
-                    })}
-                </fieldset>
-            </div>;
-
-            this.setState({
-                singleData: {
-                    img: <div className="b_y1_pizza_img"><img src={pizzaArray[0].pizza_url} className="img-fluid" /></div>,
-                    pizza, toppingsWrapper, drinks
-                }
-            })
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    componentDidMount() {
-        this.getPizza()
-    }
-
-    actionButton() {
-        return (
-            <div className="action-button">
-                <a href="#" className="btn btn-sm btn-danger">Checkout</a>
-            </div>
-        )
-    }
-
-    increDecrease(evt,increase) {
-        console.log(increase)
-        if (!increase)  {
-            if (0 !==   backpack().pizza.qty )
-                backpack().pizza.qty -= 1;
-        }   else{
-            backpack().pizza.qty += 1;
-        }
-        console.log(backpack())
+export const SinglePizza    =   (props) =>  {
+    document.querySelectorAll(".navbar a").forEach(el => {
+        el.style.color = "black";
+    })
+    return(
+        <div className="b_y1 container">
+        <div className="b_y1_pizza">
+            <PizzaProvider value={props} >
+                <PizzaContext.Consumer>
+                   
+                   
+                    
+                        {
+                            (context)   =>  {
+                                if(true == context.state.isLoaded )  {
+                                    
+                                   return( <>
+                                    <div className="b_y1_pizza_img"><img src={context.state.pizzaArray[0].pizza_url} className="img-fluid" /></div>
+                                    <div className="b_y1_pizza_details">
+                                        {<PizzaInfo/>}
+                                        {<ToppingsInfo/>}
+                                        {<DrinksInfo />}
+                                        {<ActionButton />}
+                                    </div>
+                                    </>)
+                                }
+                            }
+                                
+                            
+                        }
+                    
+                        
+                </PizzaContext.Consumer>
+            </PizzaProvider>
+        </div>
         
-    }
+    </div>
+    )
+}
 
-    handleStyles(target) {
 
-        return (target.checked && target.type !== 'radio') ?
-            target.parentNode.parentNode.style.cssText = "background:#e4584b;color:#fff" :
-            target.parentNode.parentNode.style.cssText = "background:none;color:black";
-    }
-
-    basket() {
+const basket = (prop)=> {
         return (
             <div className="basket">
                 <table className="table table-dark">
@@ -214,38 +80,164 @@ export class SinglePizza extends Component {
         )
     }
 
-    render() {
-        document.querySelectorAll(".navbar a").forEach(el => {
-            el.style.color = "black";
-        })
+    export const  PizzaInfo =   ()  =>  {
+        const pizza =   useContext(PizzaContext)
+            return( pizza.state.pizzaArray.map((e, i) => (
+                <div key={i}>
+                    <h1  className="h2">{e.name}</h1>
+                    <div className="sizes">
+                        <fieldset className="border p-2">
+                            <legend className="w-auto">Pizza Sizes</legend>
+                            <input type="radio"
 
-        return (
-            <div className="b_y1 container">
-                <div className="b_y1_pizza">
-                    {this.state.singleData.img}
-                    <div className="b_y1_pizza_details">
-                        {this.state.singleData.pizza}
-                        {this.state.singleData.toppingsWrapper}
-                        {this.basket()}
-                        {this.actionButton()}
+                                data-name="size"
+                                name="size"
+
+                                id="sizeSmall"
+
+                                value={e.small}
+
+                                onChange={(evt)=>handleChange(evt,pizza)} />
+
+                            <label htmlFor="sizeSmall">S</label>
+
+                            <input type="radio"
+
+                                data-name="size"
+                                name="size"
+
+                                id="sizeMed"
+
+                                value={e.medium}
+
+                                onChange={(evt)=>handleChange(evt,pizza)} />
+
+                            <label htmlFor="sizeMed">M</label>
+
+                            <input type="radio"
+
+                                data-name="size"
+                                name="size"
+
+                                id="sizeLarge"
+
+                                value={e.large}
+
+                                onChange={(evt)=>handleChange(evt,pizza)} />
+
+                            <label htmlFor="sizeLarge">L</label>
+
+                        </fieldset>
+
                     </div>
-
                 </div>
-            </div>
-        );
+            )));
     }
 
-};
+    export const ToppingsInfo   =   ()  =>  {
+        const toppings =   useContext(PizzaContext)
+        return (<div className="form-group">
+        <fieldset className="border p-2 custom-fieldset">
+            <legend>Extra Toppings</legend>
+            {toppings.state.toppingsArray.map((el, i) => {
+                return (<p key={i}>
+                    <label>
+                        <input 
+                        type="checkbox"
+                         value={el.id}
+                          data-name="toppings"
+                           className="custom_checkbox" 
+                           data-price={el.price} 
+                           onChange={(evt)=>handleChange(evt,toppings)} /> {el.name}
+                    </label>
+                </p>);
+            })}
+        </fieldset>
+    </div>);
+    }
 
-const backpack  =   (()  =>  {
-    const state = {};
-    return  (data = null)  =>  {
-        if  (data   !== null)   {
-            for (let key in data)  {
-                state[key] = data[key];
-            }
-        }
+    export const DrinksInfo =   ()    =>  {
+        const drinks = useContext(PizzaContext);
         
-        return state;
+        return (<div className="form-group">
+                <fieldset className="border p-2 custom-fieldset">
+                    <legend>Drinks</legend>
+                    {drinks.state.drinksArray.map((el, i) => {
+                        return (<p key={i}>
+                            <label>
+                                <input 
+                                type="checkbox" 
+                                value={el.id} 
+                                data-name="drinks" 
+                                className="custom_checkbox" 
+                                data-price={el.price} 
+                                onChange={(evt)=>handleChange(evt,drinks)} /> {el.name}
+                            </label>
+                        </p>);
+                    })}
+                </fieldset>
+            </div>);
     }
-})();
+
+    export const handleChange = async (evt,context)   =>   {
+        console.log(context);
+        return;
+        evt.persist()
+       
+        // return;
+        const { target } = evt;
+        handleStyles(target);
+        // console.log(target); return;
+        const { dataset: { name }, value, type } = target;
+
+        console.log([name, value]);
+        if ('radio' === type) {
+            oldState[`${name}_selected`] || await setState({ [`${name}_selected`]: '' });
+            if (value !== oldState[`${name}_selected`]) {
+                setState({ [`${name}_selected`]: value });
+            }
+        } else {
+
+            oldState[`${name}_selected`] || await setState({ [`${name}_selected`]: [] });
+            //  debugger;
+            let index = oldState[`${name}_selected`].indexOf(value);
+            if (index > -1) {
+                oldState[`${name}_selected`].splice(index, 1);
+                // oldState[`${name}_selected`].indexOf(value).remove();
+            } else {
+                const current = oldState[`${name}_selected`];
+                current.push(value);
+                setState({ [`${name}_selected`]: current });
+            }
+
+            console.log(oldState[`${name}_selected`])
+        }
+
+        console.log(oldState)
+
+    }
+
+    export const handleStyles   =   (target)    =>  {
+
+        return (target.checked && target.type !== 'radio') ?
+            target.parentNode.parentNode.style.cssText = "background:#e4584b;color:#fff" :
+            target.parentNode.parentNode.style.cssText = "background:none;color:black";
+    }
+
+ const   ActionButton   =   ()  => {
+        const inBuffer  =   useContext(PizzaContext);
+        return (
+            <div className="action-button">
+                
+                <Link   to={{
+                    pathname:"/checkout",
+                    state:inBuffer.state
+                }}
+                className="btn btn-sm btn-danger">
+                    Checkout
+                </Link>
+               
+                {/* <a href="#" className="btn btn-sm btn-danger">Checkout</a> */}
+            </div>
+        )
+    }
