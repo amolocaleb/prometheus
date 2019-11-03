@@ -140,12 +140,13 @@ a:hover {
 }
 
 .b_y1 {
+  position: absolute;
   margin-top: 100px;
   height: 100%;
 }
 
 .app {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
 }
@@ -156,7 +157,6 @@ a:hover {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
           flex-direction: row;
-  height: inherit;
 }
 
 .b_y1_pizza_img,
@@ -174,6 +174,7 @@ a:hover {
   -webkit-box-pack: center;
           justify-content: center;
   overflow: hidden;
+  height: 100%;
 }
 
 input[type=radio] {

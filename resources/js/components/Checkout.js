@@ -11,8 +11,8 @@ export  const Checkout = ({location})=> {
                 setPizza((prev)=>prev['pizza_selected']=1);
         
         console.log(['state',location.state])
-        return (<div>
-            Checkout Page
+        return (<div className="b_y1">
+            Hey
             </div>);
     
 }

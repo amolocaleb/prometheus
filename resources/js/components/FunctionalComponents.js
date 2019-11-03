@@ -24,6 +24,7 @@ export const SinglePizza    =   (props) =>  {
                                         {<PizzaInfo/>}
                                         {<ToppingsInfo/>}
                                         {<DrinksInfo />}
+                                        {<Basket/>}
                                         {<ActionButton />}
                                     </div>
                                     </>)
@@ -43,7 +44,8 @@ export const SinglePizza    =   (props) =>  {
 }
 
 
-const basket = (prop)=> {
+const Basket = ()=> {
+    const context =   useContext(PizzaContext)
         return (
             <div className="basket">
                 <table className="table table-dark">
@@ -64,9 +66,9 @@ const basket = (prop)=> {
                                 <div className="basket-item-qty">
 
                                     <span className="basket-btn-wrapper">
-                                        <span className="basket_btn_minus" onClick={this.increDecrease.bind(null,false)}><i className="la la-minus"></i></span>
-                                        <span className="basket_qty">{backpack().pizza.qty}</span>
-                                        <span className="basket_btn_plus" onClick={this.increDecrease.bind(null,true)}><i className="la la-plus"></i></span>
+                                        <span className="basket_btn_minus" onClick={()=>theCounter(context,false)}><i className="la la-minus"></i></span>
+                                        <span className="basket_qty">{context.state.pizza_qty }</span>
+                                        <span className="basket_btn_plus" onClick={()=>theCounter(context,true)}><i className="la la-plus"></i></span>
                                     </span>
                                 </div>
                             </td>
@@ -75,7 +77,7 @@ const basket = (prop)=> {
                         </tr>
                     </tbody>
                 </table>
-
+                {console.log(context)}
             </div>
         )
     }
@@ -179,26 +181,26 @@ const basket = (prop)=> {
             </div>);
     }
 
-    export const handleChange = async (evt,context)   =>   {
-        console.log(context);
-        return;
-        evt.persist()
-       
-        // return;
+    export const handleChange =  (evt,context)   =>   {
+        
         const { target } = evt;
+        const oldState   =   context.state;
+        // return;
+        
         handleStyles(target);
         // console.log(target); return;
         const { dataset: { name }, value, type } = target;
 
         console.log([name, value]);
         if ('radio' === type) {
-            oldState[`${name}_selected`] || await setState({ [`${name}_selected`]: '' });
+            oldState[`${name}_selected`] ||  (oldState[`${name}_selected`]   =    '') ;
             if (value !== oldState[`${name}_selected`]) {
-                setState({ [`${name}_selected`]: value });
+                // setStates({ [`${name}_selected`]: value });
+                oldState[`${name}_selected`]    =   value;
             }
         } else {
 
-            oldState[`${name}_selected`] || await setState({ [`${name}_selected`]: [] });
+            oldState[`${name}_selected`] ||  (oldState[`${name}_selected`]   =    []) ;
             //  debugger;
             let index = oldState[`${name}_selected`].indexOf(value);
             if (index > -1) {
@@ -207,7 +209,8 @@ const basket = (prop)=> {
             } else {
                 const current = oldState[`${name}_selected`];
                 current.push(value);
-                setState({ [`${name}_selected`]: current });
+                // setStates({ [`${name}_selected`]: current });
+                oldState[`${name}_selected`]   =    current;
             }
 
             console.log(oldState[`${name}_selected`])
@@ -241,3 +244,27 @@ const basket = (prop)=> {
             </div>
         )
     }
+
+const   theCounter  =   (context,flag)  =>  {
+    if  (flag)  {
+        if  (!context.state.pizza_qty)    {
+            context.state.pizza_qty   =   1;
+        }   else   {
+            context.state.pizza_qty   +=  1;
+        }
+        
+    }   else    {
+        context.state.pizza_qty = context.state.pizza_qty   ?  parseInt(context.state.pizza_qty)-1 :  1;
+        if  (!context.state.pizza_qty)    {
+            context.state.pizza_qty   =   1;
+        }   else   {
+            if(context.state.pizza_qty   >  1)
+                context.state.pizza_qty   -=  1;
+            else
+                context.state.pizza_qty   =  1;
+        }
+        
+    }
+    console.log(context.state)
+    return context;
+}
