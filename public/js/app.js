@@ -1598,7 +1598,7 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1929,6 +1929,28 @@ module.exports = {
   extend: extend,
   trim: trim
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
 
 
 /***/ }),
@@ -7454,28 +7476,6 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 
 module.exports = hoistNonReactStatics;
-
-
-/***/ }),
-
-/***/ "./node_modules/is-buffer/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/is-buffer/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
 
 
 /***/ }),
@@ -74133,6 +74133,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _PizzaContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PizzaContext */ "./resources/js/components/PizzaContext.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -74162,6 +74170,22 @@ var SinglePizza = function SinglePizza(props) {
 
 var Basket = function Basket() {
   var context = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_PizzaContext__WEBPACK_IMPORTED_MODULE_2__["PizzaContext"]);
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(context.state),
+      _useState2 = _slicedToArray(_useState, 2),
+      contextState = _useState2[0],
+      setContextState = _useState2[1];
+
+  console.log(contextState);
+
+  if (!contextState.pizza_qty) {
+    contextState['pizza_qty'] = 1;
+    setContextState({
+      pizza_qty: 1
+    });
+  }
+
+  console.log([contextState, context]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "basket"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
@@ -74183,16 +74207,20 @@ var Basket = function Basket() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "basket_btn_minus",
     onClick: function onClick() {
-      return theCounter(context, false);
+      return setContextState(function (prev) {
+        return prev['pizza_qty'] = contextState['pizza_qty'] - 1;
+      });
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "la la-minus"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "basket_qty"
-  }, context.state.pizza_qty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  }, contextState['pizza_qty']), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "basket_btn_plus",
     onClick: function onClick() {
-      return theCounter(context, true);
+      return setContextState(function (prev) {
+        return prev['pizza_qty'] = contextState['pizza_qty'] + 1;
+      });
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "la la-plus"
@@ -74350,24 +74378,39 @@ var ActionButton = function ActionButton() {
   }, "Checkout"));
 };
 
-var theCounter = function theCounter(context, flag) {
+var theCounter = function theCounter(context, fn, flag) {
   if (flag) {
-    if (!context.state.pizza_qty) {
-      context.state.pizza_qty = 1;
+    if (!context.pizza_qty) {
+      // context.pizza_qty   =   1;
+      fn(function (prev) {
+        return prev.pizza_qty = 1;
+      });
     } else {
-      context.state.pizza_qty += 1;
+      // context.pizza_qty   +=  1;
+      fn(function (prev) {
+        return prev.pizza_qty += 1;
+      });
     }
   } else {
-    context.state.pizza_qty = context.state.pizza_qty ? parseInt(context.state.pizza_qty) - 1 : 1;
+    context.pizza_qty = context.pizza_qty ? parseInt(context.pizza_qty) - 1 : 1;
 
-    if (!context.state.pizza_qty) {
-      context.state.pizza_qty = 1;
+    if (!context.pizza_qty) {
+      // context.pizza_qty   =   1;
+      fn(function (prev) {
+        return prev.pizza_qty = 1;
+      });
     } else {
-      if (context.state.pizza_qty > 1) context.state.pizza_qty -= 1;else context.state.pizza_qty = 1;
+      if (context.pizza_qty > 1) // context.pizza_qty   -=  1;
+        fn(function (prev) {
+          return prev.pizza_qty -= 1;
+        });else // context.pizza_qty   =  1;
+        fn(function (prev) {
+          return prev.pizza_qty = 1;
+        });
     }
   }
 
-  console.log(context.state);
+  console.log(context);
   return context;
 };
 

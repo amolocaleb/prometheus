@@ -46,6 +46,15 @@ export const SinglePizza    =   (props) =>  {
 
 const Basket = ()=> {
     const context =   useContext(PizzaContext)
+    const [contextState,setContextState] =   useState(context.state);
+    console.log(contextState)
+    if (!contextState.pizza_qty){
+        
+        contextState['pizza_qty'] = 1;
+        setContextState({pizza_qty:1})
+    }
+        
+    console.log([contextState,context])
         return (
             <div className="basket">
                 <table className="table table-dark">
@@ -66,9 +75,9 @@ const Basket = ()=> {
                                 <div className="basket-item-qty">
 
                                     <span className="basket-btn-wrapper">
-                                        <span className="basket_btn_minus" onClick={()=>theCounter(context,false)}><i className="la la-minus"></i></span>
-                                        <span className="basket_qty">{context.state.pizza_qty }</span>
-                                        <span className="basket_btn_plus" onClick={()=>theCounter(context,true)}><i className="la la-plus"></i></span>
+                                        <span className="basket_btn_minus" onClick={()=> setContextState((prev)=>prev['pizza_qty'] = contextState['pizza_qty'] - 1)}><i className="la la-minus"></i></span>
+                                        <span className="basket_qty">{contextState['pizza_qty'] }</span>
+                                        <span className="basket_btn_plus" onClick={()=> setContextState((prev)=>prev['pizza_qty'] = contextState['pizza_qty'] + 1)}><i className="la la-plus"></i></span>
                                     </span>
                                 </div>
                             </td>
@@ -245,26 +254,31 @@ const Basket = ()=> {
         )
     }
 
-const   theCounter  =   (context,flag)  =>  {
+const   theCounter  =   (context,fn,flag)  =>  {
     if  (flag)  {
-        if  (!context.state.pizza_qty)    {
-            context.state.pizza_qty   =   1;
+        if  (!context.pizza_qty)    {
+            // context.pizza_qty   =   1;
+            fn((prev)=> prev.pizza_qty=1);
         }   else   {
-            context.state.pizza_qty   +=  1;
+            // context.pizza_qty   +=  1;
+            fn((prev)=> prev.pizza_qty +=1);
         }
         
     }   else    {
-        context.state.pizza_qty = context.state.pizza_qty   ?  parseInt(context.state.pizza_qty)-1 :  1;
-        if  (!context.state.pizza_qty)    {
-            context.state.pizza_qty   =   1;
+        context.pizza_qty = context.pizza_qty   ?  parseInt(context.pizza_qty)-1 :  1;
+        if  (!context.pizza_qty)    {
+            // context.pizza_qty   =   1;
+            fn((prev)=> prev.pizza_qty=1);
         }   else   {
-            if(context.state.pizza_qty   >  1)
-                context.state.pizza_qty   -=  1;
+            if(context.pizza_qty   >  1)
+                // context.pizza_qty   -=  1;
+                fn((prev)=> prev.pizza_qty-=1);
             else
-                context.state.pizza_qty   =  1;
+                // context.pizza_qty   =  1;
+                fn((prev)=> prev.pizza_qty=1);
         }
         
     }
-    console.log(context.state)
+    console.log(context)
     return context;
 }
