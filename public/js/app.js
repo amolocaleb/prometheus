@@ -74086,30 +74086,308 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Checkout", function() { return Checkout; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 var Checkout = function Checkout(_ref) {
   var location = _ref.location;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(location.state),
-      _useState2 = _slicedToArray(_useState, 2),
-      pizza = _useState2[0],
-      setPizza = _useState2[1];
-
-  if (!location.state['pizza_selected']) setPizza(function (prev) {
-    return prev['pizza_selected'] = 1;
-  });
-  console.log(['state', location.state]);
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "b_y1"
-  }, "Hey");
+  // const[pizza,setPizza]   =   useState(location.state);
+  // if  (!location.state['pizza_selected'])
+  //         setPizza((prev)=>prev['pizza_selected']=1);
+  console.log(['state', JSON.parse(location.state.state)]);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
+    id: "main",
+    role: "main"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    id: "checkout-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row py-5"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-4 order-md-2 mb-4"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "d-flex justify-content-between align-items-center mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-muted"
+  }, "Your cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "badge badge-secondary badge-pill"
+  }, "3")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "list-group mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "list-group-item d-flex justify-content-between lh-condensed"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
+    className: "my-0"
+  }, "Product name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    className: "text-muted"
+  }, "Brief description")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-muted"
+  }, "$12")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "list-group-item d-flex justify-content-between lh-condensed"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
+    className: "my-0"
+  }, "Second product"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    className: "text-muted"
+  }, "Brief description")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-muted"
+  }, "$8")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "list-group-item d-flex justify-content-between lh-condensed"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
+    className: "my-0"
+  }, "Third item"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    className: "text-muted"
+  }, "Brief description")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-muted"
+  }, "$5")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "list-group-item d-flex justify-content-between bg-light"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-success"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
+    className: "my-0"
+  }, "Promo code"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "EXAMPLE CODE")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-success"
+  }, "-$5")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "list-group-item d-flex justify-content-between"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Total (USD)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "$20"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    className: "card p-2"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "Promo code"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group-append"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "submit",
+    className: "btn btn-secondary"
+  }, "Redeem"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-8 order-md-1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "mb-3"
+  }, "Billing address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    className: "needs-validation",
+    noValidate: true
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-6 mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "firstName"
+  }, "First name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    id: "firstName",
+    placeholder: "",
+    defaultValue: "",
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Valid first name is required.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-6 mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "lastName"
+  }, "Last name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    id: "lastName",
+    placeholder: "",
+    defaultValue: "",
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Valid last name is required."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "email"
+  }, "Email", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-muted"
+  }, "(Optional)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "email",
+    className: "form-control",
+    id: "email",
+    placeholder: "you@example.com"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Please enter a valid email address htmlFor shipping updates.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "address"
+  }, "Address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    id: "address",
+    placeholder: "1234 Main St",
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Please enter your shipping address.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "address2"
+  }, "Address 2", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-muted"
+  }, "(Optional)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    id: "address2",
+    placeholder: "Apartment or suite"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-5 mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "country"
+  }, "Country"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    className: "custom-select d-block w-100",
+    id: "country",
+    required: true
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    defaultValue: ""
+  }, "Choose..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "United States")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Please select a valid country.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-4 mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "state"
+  }, "State"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    className: "custom-select d-block w-100",
+    id: "state",
+    required: true
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    defaultValue: ""
+  }, "Choose..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "California")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Please provide a valid state.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-3 mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "zip"
+  }, "Zip"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    id: "zip",
+    placeholder: "",
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Zip code required."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+    className: "mb-4"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-control custom-checkbox"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "checkbox",
+    className: "custom-control-input",
+    id: "same-address"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "custom-control-label",
+    htmlFor: "same-address"
+  }, "Shipping address is the same as my billing address")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-control custom-checkbox"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "checkbox",
+    className: "custom-control-input",
+    id: "save-info"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "custom-control-label",
+    htmlFor: "save-info"
+  }, "Save this information htmlFor next time")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+    className: "mb-4"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "mb-3"
+  }, "Payment"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-block my-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-control custom-radio"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "credit",
+    name: "paymentMethod",
+    type: "radio",
+    className: "custom-control-input",
+    defaultChecked: true,
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "custom-control-label",
+    htmlFor: "credit"
+  }, "Credit card")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-control custom-radio"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "debit",
+    name: "paymentMethod",
+    type: "radio",
+    className: "custom-control-input",
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "custom-control-label",
+    htmlFor: "debit"
+  }, "Debit card")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "custom-control custom-radio"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "paypal",
+    name: "paymentMethod",
+    type: "radio",
+    className: "custom-control-input",
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "custom-control-label",
+    htmlFor: "paypal"
+  }, "Paypal"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-6 mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "cc-name"
+  }, "Name on card"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    id: "cc-name",
+    placeholder: "",
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    className: "text-muted"
+  }, "Full name as displayed on card"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Name on card is required")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-6 mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "cc-number"
+  }, "Credit card number"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    id: "cc-number",
+    placeholder: "",
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Credit card number is required"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-3 mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "cc-expiration"
+  }, "Expiration"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    id: "cc-expiration",
+    placeholder: "",
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Expiration date required")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-3 mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "cc-expiration"
+  }, "CVV"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    id: "cc-cvv",
+    placeholder: "",
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Security code required"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+    className: "mb-4"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-primary btn-lg btn-sm",
+    type: "submit"
+  }, "Continue to checkout"))))))));
 };
 
 /***/ }),
@@ -74133,13 +74411,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _PizzaContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PizzaContext */ "./resources/js/components/PizzaContext.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -74163,29 +74436,16 @@ var SinglePizza = function SinglePizza(props) {
         className: "img-fluid"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "b_y1_pizza_details"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PizzaInfo, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ToppingsInfo, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DrinksInfo, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Basket, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ActionButton, null)));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PizzaInfo, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ToppingsInfo, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DrinksInfo, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Basket, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ActionButton, {
+        state: JSON.stringify(context)
+      })));
     }
   }))));
 };
 
 var Basket = function Basket() {
-  var context = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_PizzaContext__WEBPACK_IMPORTED_MODULE_2__["PizzaContext"]);
+  var context = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_PizzaContext__WEBPACK_IMPORTED_MODULE_2__["PizzaContext"]); // const [contextState,setContextState] =   useState(context.state);
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(context.state),
-      _useState2 = _slicedToArray(_useState, 2),
-      contextState = _useState2[0],
-      setContextState = _useState2[1];
-
-  console.log(contextState);
-
-  if (!contextState.pizza_qty) {
-    contextState['pizza_qty'] = 1;
-    setContextState({
-      pizza_qty: 1
-    });
-  }
-
-  console.log([contextState, context]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "basket"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
@@ -74207,19 +74467,19 @@ var Basket = function Basket() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "basket_btn_minus",
     onClick: function onClick() {
-      return setContextState(function (prev) {
-        return prev['pizza_qty'] = contextState['pizza_qty'] - 1;
+      return context.state.update({
+        pizza_qty: context.state.pizza_qty - 1
       });
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "la la-minus"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "basket_qty"
-  }, contextState['pizza_qty']), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  }, context.state.pizza_qty), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "basket_btn_plus",
     onClick: function onClick() {
-      return setContextState(function (prev) {
-        return prev['pizza_qty'] = contextState['pizza_qty'] + 1;
+      return context.state.update({
+        pizza_qty: context.state.pizza_qty + 1
       });
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -74365,14 +74625,14 @@ var handleStyles = function handleStyles(target) {
   return target.checked && target.type !== 'radio' ? target.parentNode.parentNode.style.cssText = "background:#e4584b;color:#fff" : target.parentNode.parentNode.style.cssText = "background:none;color:black";
 };
 
-var ActionButton = function ActionButton() {
-  var inBuffer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_PizzaContext__WEBPACK_IMPORTED_MODULE_2__["PizzaContext"]);
+var ActionButton = function ActionButton(props) {
+  // const inBuffer  =   useContext(PizzaContext);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "action-button"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: {
       pathname: "/checkout",
-      state: inBuffer.state
+      state: props
     },
     className: "btn btn-sm btn-danger"
   }, "Checkout"));
@@ -74509,7 +74769,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppProvider", function() { return AppProvider; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Checkout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Checkout */ "./resources/js/components/Checkout.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -74519,9 +74786,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -74534,6 +74801,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 var DrinksContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["createContext"])();
@@ -74574,7 +74842,7 @@ function (_Component) {
     _this.state = {
       isLoaded: false
     };
-    console.log(props);
+    _this.updateState = _this.updateState.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -74594,18 +74862,26 @@ function (_Component) {
           isLoaded: true,
           pizzaArray: pizzaArray,
           toppingsArray: toppingsArray,
-          drinksArray: drinksArray
+          drinksArray: drinksArray,
+          pizza_qty: 1
         });
       });
     }
   }, {
+    key: "updateState",
+    value: function updateState(newState) {
+      this.setState(_objectSpread({}, newState)); // fn(this.state);
+    }
+  }, {
     key: "render",
     value: function render() {
+      console.log(['stata', this.state]);
       var _this$state = this.state,
           isLoaded = _this$state.isLoaded,
           pizzaArray = _this$state.pizzaArray,
           toppingsArray = _this$state.toppingsArray,
-          drinksArray = _this$state.drinksArray;
+          drinksArray = _this$state.drinksArray,
+          pizza_qty = _this$state.pizza_qty;
       console.log(this.state);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PizzaContext.Provider, {
         value: {
@@ -74613,7 +74889,9 @@ function (_Component) {
             pizzaArray: pizzaArray,
             isLoaded: isLoaded,
             toppingsArray: toppingsArray,
-            drinksArray: drinksArray
+            drinksArray: drinksArray,
+            update: this.updateState,
+            pizza_qty: pizza_qty
           }
         }
       }, this.props.children);

@@ -1,6 +1,7 @@
 import React, {  useContext, useState }    from 'react'
 import { Link } from "react-router-dom";
 import { PizzaContext, PizzaProvider } from './PizzaContext';
+import _ from 'lodash';
 
 export const SinglePizza    =   (props) =>  {
     document.querySelectorAll(".navbar a").forEach(el => {
@@ -25,7 +26,7 @@ export const SinglePizza    =   (props) =>  {
                                         {<ToppingsInfo/>}
                                         {<DrinksInfo />}
                                         {<Basket/>}
-                                        {<ActionButton />}
+                                        {<ActionButton state={JSON.stringify(context)} />}
                                     </div>
                                     </>)
                                 }
@@ -46,15 +47,8 @@ export const SinglePizza    =   (props) =>  {
 
 const Basket = ()=> {
     const context =   useContext(PizzaContext)
-    const [contextState,setContextState] =   useState(context.state);
-    console.log(contextState)
-    if (!contextState.pizza_qty){
+    // const [contextState,setContextState] =   useState(context.state);
         
-        contextState['pizza_qty'] = 1;
-        setContextState({pizza_qty:1})
-    }
-        
-    console.log([contextState,context])
         return (
             <div className="basket">
                 <table className="table table-dark">
@@ -75,9 +69,9 @@ const Basket = ()=> {
                                 <div className="basket-item-qty">
 
                                     <span className="basket-btn-wrapper">
-                                        <span className="basket_btn_minus" onClick={()=> setContextState((prev)=>prev['pizza_qty'] = contextState['pizza_qty'] - 1)}><i className="la la-minus"></i></span>
-                                        <span className="basket_qty">{contextState['pizza_qty'] }</span>
-                                        <span className="basket_btn_plus" onClick={()=> setContextState((prev)=>prev['pizza_qty'] = contextState['pizza_qty'] + 1)}><i className="la la-plus"></i></span>
+                                        <span className="basket_btn_minus" onClick={()=> context.state.update({pizza_qty:context.state.pizza_qty-1})}><i className="la la-minus"></i></span>
+                                        <span className="basket_qty">{context.state.pizza_qty }</span>
+                                        <span className="basket_btn_plus" onClick={()=> context.state.update({pizza_qty:context.state.pizza_qty+1})}><i className="la la-plus"></i></span>
                                     </span>
                                 </div>
                             </td>
@@ -236,14 +230,14 @@ const Basket = ()=> {
             target.parentNode.parentNode.style.cssText = "background:none;color:black";
     }
 
- const   ActionButton   =   ()  => {
-        const inBuffer  =   useContext(PizzaContext);
+ const   ActionButton   =   (props)  => {
+        // const inBuffer  =   useContext(PizzaContext);
         return (
             <div className="action-button">
                 
                 <Link   to={{
                     pathname:"/checkout",
-                    state:inBuffer.state
+                    state:props
                 }}
                 className="btn btn-sm btn-danger">
                     Checkout

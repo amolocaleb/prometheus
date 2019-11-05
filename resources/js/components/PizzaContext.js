@@ -1,4 +1,5 @@
 import React,{useState,createContext, useContext,Component} from 'react';
+import { Checkout } from './Checkout';
 
 
 export const DrinksContext    =   createContext();
@@ -31,7 +32,8 @@ export class PizzaProvider  extends Component   {
     constructor(props) {
         super(props);
         this.state  =   {isLoaded:false};
-        console.log(props)
+        
+        this.updateState = this.updateState.bind(this);
     }
 
     componentDidMount() {
@@ -41,20 +43,27 @@ export class PizzaProvider  extends Component   {
             const pizzaArray = data.pizza;
             const toppingsArray = data.toppings;
             const drinksArray = data.drinks;
-            this.setState({isLoaded:true,pizzaArray,toppingsArray,drinksArray});
+            this.setState({isLoaded:true,pizzaArray,toppingsArray,drinksArray,pizza_qty:1});
         });
         
     }
 
+    updateState(newState)   {
+        this.setState({...newState});
+        // fn(this.state);
+        
+    }
     
 
     render()    {
-        const {isLoaded,pizzaArray,toppingsArray,drinksArray}  =   this.state;
+        console.log( ['stata',this.state]);
+        const {isLoaded,pizzaArray,toppingsArray,drinksArray,pizza_qty}  =   this.state;
         console.log(this.state)
         return (
         <PizzaContext.Provider value={{
-            state:{pizzaArray,isLoaded,toppingsArray,drinksArray}
+            state:{pizzaArray,isLoaded,toppingsArray,drinksArray,update:this.updateState,pizza_qty}
         }}>
+            {/* <Checkout   /> */}
             {this.props.children}
         </PizzaContext.Provider>
         )
