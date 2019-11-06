@@ -43,7 +43,7 @@ export class PizzaProvider  extends Component   {
             const pizzaArray = data.pizza;
             const toppingsArray = data.toppings;
             const drinksArray = data.drinks;
-            this.setState({isLoaded:true,pizzaArray,toppingsArray,drinksArray,pizza_qty:1});
+            this.setState({isLoaded:true,pizzaArray,toppingsArray,drinksArray,pizza_qty:1,drinks_selected:[],toppings_selected:[],size:''});
         });
         
     }
@@ -57,11 +57,11 @@ export class PizzaProvider  extends Component   {
 
     render()    {
         // console.log( ['stata',this.state]);
-        // const {isLoaded,pizzaArray,toppingsArray,drinksArray,pizza_qty}  =   this.state;
-        console.log(this.state)
+        const {isLoaded,pizzaArray,toppingsArray,drinksArray,pizza_qty,drinks_selected,toppings_selected,size}  =   this.state;
+        // console.log(this.state)
         return (
         <PizzaContext.Provider value={{
-            state:this.state
+            state:{isLoaded,pizzaArray,toppingsArray,drinksArray,pizza_qty,drinks_selected,toppings_selected,size,update:this.updateState}
         }}>
             {/* <Checkout   /> */}
             {this.props.children}

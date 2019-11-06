@@ -1598,7 +1598,7 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1929,28 +1929,6 @@ module.exports = {
   extend: extend,
   trim: trim
 };
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
-/*!************************************************************!*\
-  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
 
 
 /***/ }),
@@ -7476,6 +7454,28 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 
 module.exports = hoistNonReactStatics;
+
+
+/***/ }),
+
+/***/ "./node_modules/is-buffer/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/is-buffer/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
 
 
 /***/ }),
@@ -74089,10 +74089,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var Checkout = function Checkout(_ref) {
   var location = _ref.location;
-  // const[pizza,setPizza]   =   useState(location.state);
+  var cart = JSON.parse(location.state.state); // const[pizza,setPizza]   =   useState(location.state);
   // if  (!location.state['pizza_selected'])
   //         setPizza((prev)=>prev['pizza_selected']=1);
-  console.log(['state', JSON.parse(location.state.state)]);
+
+  console.log(['state', cart.state]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     id: "main",
     role: "main"
@@ -74608,8 +74609,8 @@ var handleChange = function handleChange(evt, context) {
     console.log(oldState["".concat(name, "_selected")]);
   }
 
-  console.log(oldState); //  context.state.update(oldState);
-
+  console.log(oldState);
+  context.state.update(oldState);
   return oldState;
 };
 var handleStyles = function handleStyles(target) {
@@ -74617,14 +74618,16 @@ var handleStyles = function handleStyles(target) {
 };
 
 var ActionButton = function ActionButton(props) {
-  var inBuffer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_PizzaContext__WEBPACK_IMPORTED_MODULE_2__["PizzaContext"]);
-  console.log(['buffer', inBuffer]);
+  //  const inBuffer  =   useContext(PizzaContext);
+  //  const st = useState(inBuffer);
+  //  const ss = JSON.stringify(st);
+  //  console.log(['buffer',ss])
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "action-button"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: {
       pathname: "/checkout",
-      state: inBuffer
+      state: props
     },
     className: "btn btn-sm btn-danger"
   }, "Checkout"));
@@ -74819,7 +74822,10 @@ function (_Component) {
           pizzaArray: pizzaArray,
           toppingsArray: toppingsArray,
           drinksArray: drinksArray,
-          pizza_qty: 1
+          pizza_qty: 1,
+          drinks_selected: [],
+          toppings_selected: [],
+          size: ''
         });
       });
     }
@@ -74832,11 +74838,29 @@ function (_Component) {
     key: "render",
     value: function render() {
       // console.log( ['stata',this.state]);
-      // const {isLoaded,pizzaArray,toppingsArray,drinksArray,pizza_qty}  =   this.state;
-      console.log(this.state);
+      var _this$state = this.state,
+          isLoaded = _this$state.isLoaded,
+          pizzaArray = _this$state.pizzaArray,
+          toppingsArray = _this$state.toppingsArray,
+          drinksArray = _this$state.drinksArray,
+          pizza_qty = _this$state.pizza_qty,
+          drinks_selected = _this$state.drinks_selected,
+          toppings_selected = _this$state.toppings_selected,
+          size = _this$state.size; // console.log(this.state)
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PizzaContext.Provider, {
         value: {
-          state: this.state
+          state: {
+            isLoaded: isLoaded,
+            pizzaArray: pizzaArray,
+            toppingsArray: toppingsArray,
+            drinksArray: drinksArray,
+            pizza_qty: pizza_qty,
+            drinks_selected: drinks_selected,
+            toppings_selected: toppings_selected,
+            size: size,
+            update: this.updateState
+          }
         }
       }, this.props.children);
     }

@@ -33,9 +33,8 @@ label{
 }
 .custom-nav {
     display: block;
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
-    
     z-index: 33;
     background: 0 0 !important;
 }
@@ -123,17 +122,17 @@ a:hover{
     height: 200px !important;
 }
 
-.b_y1{
-    position: absolute;
-    margin-top: 100px;
+.b_y1 {
+    position: relative;
+    /* margin-top: 100px; */
     height: 100%;
 }
 
-.app{
+.app {
     position: relative;
     width: 100%;
     height: 100%;
-    top: 100px;
+    
 }
 .b_y1_pizza{
     display: flex;

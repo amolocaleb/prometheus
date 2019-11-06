@@ -220,7 +220,7 @@ const Basket = ()=> {
         }
 
         console.log(oldState)
-        //  context.state.update(oldState);
+        context.state.update(oldState);
          return oldState;
     }
 
@@ -232,14 +232,16 @@ const Basket = ()=> {
     }
 
  const   ActionButton   =   (props)  => {
-         const inBuffer  =   useContext(PizzaContext);
-         console.log(['buffer',inBuffer])
+        //  const inBuffer  =   useContext(PizzaContext);
+        //  const st = useState(inBuffer);
+        //  const ss = JSON.stringify(st);
+        //  console.log(['buffer',ss])
         return (
             <div className="action-button">
                 
                 <Link   to={{
                     pathname:"/checkout",
-                    state:inBuffer
+                    state:props
                 }}
                 className="btn btn-sm btn-danger">
                     Checkout
