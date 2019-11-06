@@ -1598,7 +1598,7 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1929,6 +1929,28 @@ module.exports = {
   extend: extend,
   trim: trim
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
 
 
 /***/ }),
@@ -7454,28 +7476,6 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 
 module.exports = hoistNonReactStatics;
-
-
-/***/ }),
-
-/***/ "./node_modules/is-buffer/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/is-buffer/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
 
 
 /***/ }),
@@ -67349,7 +67349,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74333,20 +74333,6 @@ var Checkout = function Checkout(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6 mb-3"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "cc-name"
-  }, "Name on card"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "form-control",
-    id: "cc-name",
-    placeholder: "",
-    required: true
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
-    className: "text-muted"
-  }, "Full name as displayed on card"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "invalid-feedback"
-  }, "Name on card is required")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-6 mb-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "cc-number"
   }, "Credit card number"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
@@ -74564,7 +74550,8 @@ var ToppingsInfo = function ToppingsInfo() {
   })));
 };
 var DrinksInfo = function DrinksInfo() {
-  var drinks = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_PizzaContext__WEBPACK_IMPORTED_MODULE_2__["PizzaContext"]);
+  var drinks = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_PizzaContext__WEBPACK_IMPORTED_MODULE_2__["PizzaContext"]); // const [,selectDrinks]   =   useState([])
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("fieldset", {
@@ -74585,9 +74572,11 @@ var DrinksInfo = function DrinksInfo() {
   })));
 };
 var handleChange = function handleChange(evt, context) {
+  var fn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
   var target = evt.target;
   var oldState = context.state; // return;
 
+  console.log(context);
   handleStyles(target); // console.log(target); return;
 
   var name = target.dataset.name,
@@ -74619,59 +74608,26 @@ var handleChange = function handleChange(evt, context) {
     console.log(oldState["".concat(name, "_selected")]);
   }
 
-  console.log(oldState);
+  console.log(oldState); //  context.state.update(oldState);
+
+  return oldState;
 };
 var handleStyles = function handleStyles(target) {
   return target.checked && target.type !== 'radio' ? target.parentNode.parentNode.style.cssText = "background:#e4584b;color:#fff" : target.parentNode.parentNode.style.cssText = "background:none;color:black";
 };
 
 var ActionButton = function ActionButton(props) {
-  // const inBuffer  =   useContext(PizzaContext);
+  var inBuffer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_PizzaContext__WEBPACK_IMPORTED_MODULE_2__["PizzaContext"]);
+  console.log(['buffer', inBuffer]);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "action-button"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: {
       pathname: "/checkout",
-      state: props
+      state: inBuffer
     },
     className: "btn btn-sm btn-danger"
   }, "Checkout"));
-};
-
-var theCounter = function theCounter(context, fn, flag) {
-  if (flag) {
-    if (!context.pizza_qty) {
-      // context.pizza_qty   =   1;
-      fn(function (prev) {
-        return prev.pizza_qty = 1;
-      });
-    } else {
-      // context.pizza_qty   +=  1;
-      fn(function (prev) {
-        return prev.pizza_qty += 1;
-      });
-    }
-  } else {
-    context.pizza_qty = context.pizza_qty ? parseInt(context.pizza_qty) - 1 : 1;
-
-    if (!context.pizza_qty) {
-      // context.pizza_qty   =   1;
-      fn(function (prev) {
-        return prev.pizza_qty = 1;
-      });
-    } else {
-      if (context.pizza_qty > 1) // context.pizza_qty   -=  1;
-        fn(function (prev) {
-          return prev.pizza_qty -= 1;
-        });else // context.pizza_qty   =  1;
-        fn(function (prev) {
-          return prev.pizza_qty = 1;
-        });
-    }
-  }
-
-  console.log(context);
-  return context;
 };
 
 /***/ }),
@@ -74875,24 +74831,12 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(['stata', this.state]);
-      var _this$state = this.state,
-          isLoaded = _this$state.isLoaded,
-          pizzaArray = _this$state.pizzaArray,
-          toppingsArray = _this$state.toppingsArray,
-          drinksArray = _this$state.drinksArray,
-          pizza_qty = _this$state.pizza_qty;
+      // console.log( ['stata',this.state]);
+      // const {isLoaded,pizzaArray,toppingsArray,drinksArray,pizza_qty}  =   this.state;
       console.log(this.state);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PizzaContext.Provider, {
         value: {
-          state: {
-            pizzaArray: pizzaArray,
-            isLoaded: isLoaded,
-            toppingsArray: toppingsArray,
-            drinksArray: drinksArray,
-            update: this.updateState,
-            pizza_qty: pizza_qty
-          }
+          state: this.state
         }
       }, this.props.children);
     }

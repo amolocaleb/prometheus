@@ -163,7 +163,7 @@ const Basket = ()=> {
 
     export const DrinksInfo =   ()    =>  {
         const drinks = useContext(PizzaContext);
-        
+        // const [,selectDrinks]   =   useState([])
         return (<div className="form-group">
                 <fieldset className="border p-2 custom-fieldset">
                     <legend>Drinks</legend>
@@ -184,12 +184,12 @@ const Basket = ()=> {
             </div>);
     }
 
-    export const handleChange =  (evt,context)   =>   {
+    export const handleChange =  (evt,context,fn = null)   =>   {
         
         const { target } = evt;
         const oldState   =   context.state;
         // return;
-        
+        console.log(context)
         handleStyles(target);
         // console.log(target); return;
         const { dataset: { name }, value, type } = target;
@@ -220,7 +220,8 @@ const Basket = ()=> {
         }
 
         console.log(oldState)
-
+        //  context.state.update(oldState);
+         return oldState;
     }
 
     export const handleStyles   =   (target)    =>  {
@@ -231,13 +232,14 @@ const Basket = ()=> {
     }
 
  const   ActionButton   =   (props)  => {
-        // const inBuffer  =   useContext(PizzaContext);
+         const inBuffer  =   useContext(PizzaContext);
+         console.log(['buffer',inBuffer])
         return (
             <div className="action-button">
                 
                 <Link   to={{
                     pathname:"/checkout",
-                    state:props
+                    state:inBuffer
                 }}
                 className="btn btn-sm btn-danger">
                     Checkout
@@ -247,32 +249,3 @@ const Basket = ()=> {
             </div>
         )
     }
-
-const   theCounter  =   (context,fn,flag)  =>  {
-    if  (flag)  {
-        if  (!context.pizza_qty)    {
-            // context.pizza_qty   =   1;
-            fn((prev)=> prev.pizza_qty=1);
-        }   else   {
-            // context.pizza_qty   +=  1;
-            fn((prev)=> prev.pizza_qty +=1);
-        }
-        
-    }   else    {
-        context.pizza_qty = context.pizza_qty   ?  parseInt(context.pizza_qty)-1 :  1;
-        if  (!context.pizza_qty)    {
-            // context.pizza_qty   =   1;
-            fn((prev)=> prev.pizza_qty=1);
-        }   else   {
-            if(context.pizza_qty   >  1)
-                // context.pizza_qty   -=  1;
-                fn((prev)=> prev.pizza_qty-=1);
-            else
-                // context.pizza_qty   =  1;
-                fn((prev)=> prev.pizza_qty=1);
-        }
-        
-    }
-    console.log(context)
-    return context;
-}

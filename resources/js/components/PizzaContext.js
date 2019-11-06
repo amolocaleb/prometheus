@@ -56,12 +56,12 @@ export class PizzaProvider  extends Component   {
     
 
     render()    {
-        console.log( ['stata',this.state]);
-        const {isLoaded,pizzaArray,toppingsArray,drinksArray,pizza_qty}  =   this.state;
+        // console.log( ['stata',this.state]);
+        // const {isLoaded,pizzaArray,toppingsArray,drinksArray,pizza_qty}  =   this.state;
         console.log(this.state)
         return (
         <PizzaContext.Provider value={{
-            state:{pizzaArray,isLoaded,toppingsArray,drinksArray,update:this.updateState,pizza_qty}
+            state:this.state
         }}>
             {/* <Checkout   /> */}
             {this.props.children}
