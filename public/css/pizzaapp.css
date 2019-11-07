@@ -276,3 +276,11 @@ span.basket-btn-wrapper {
   border-radius: 20px;
 }
 
+.img-thumbnail {
+  max-width: 14%;
+}
+
+li.list-group-item.d-flex.justify-content-between.lh-condensed div {
+  flex-basis: 220px;
+}
+

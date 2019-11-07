@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ELOOP } from 'constants';
 
 
 export const Checkout = ({ location }) => {
@@ -9,67 +10,80 @@ export const Checkout = ({ location }) => {
     // const[pizza,setPizza]   =   useState(location.state);
     // if  (!location.state['pizza_selected'])
     //         setPizza((prev)=>prev['pizza_selected']=1);
+    const pizza = cart.state.pizzaArray[0];
+    pizza.qty = cart.state.pizza_qty;
+    pizza.price = parseInt(cart.state.size)*pizza.qty;
+    
+    pizza.badge =   "pizza"
+    const items = [];
+    let total   =   parseInt(pizza.price);
+    items.push(pizza);
+    if (cart.state.drinks_selected.length) {
+        cart.state.drinks_selected.forEach(element => {
+            let obj = cart.state.drinksArray.find(el => {
+                return el.id == parseInt(element)
+            });
+            if (undefined !== obj){
+                obj.badge   =   "drinks";
+                total += parseInt(obj.price);
+                items.push(obj);
+            }
+        });
+    }
+    if (cart.state.toppings_selected.length) {
+        cart.state.toppings_selected.forEach(element => {
+            let obj = cart.state.toppingsArray.find(el => {
+                return el.id == parseInt(element)
+            });
+            if (undefined !== obj){
+                obj.badge   =   "toppings";
+                total += parseInt(obj.price);
+                items.push(obj);
+            }
+                
+        });
+    }
 
-    console.log(['state', cart.state])
+    const itemHtml    =   items.map((el,i) => (
+        
+        <li key={i}   className="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+                <h6 className="my-0">{el.name}</h6>
+                {
+                    el.url ?
+                        <span>
+                            <img src={el.url} alt={el.name} className="img-thumbnail" srcSet="" />
+                        </span>
+                        : ''
+                }
+
+                <small className="ml-2 text-muted">Qty</small> <span className="ml-2 mr-2  small ">{el.qty || 1}</span>
+                <span className="badge badge-pill badge-info">{el.badge}</span>
+            </div>
+            <span className="text-muted">KES {el.price}</span>
+        </li>
+        
+    ));
+    console.log([itemHtml,cart.state])
     return (
         <>
             <main id="main" role="main">
                 <section id="checkout-container">
                     <div className="container">
-                        {/* <div className="py-5 text-center">
-                            <i className="la la-credit-card la-3x text-primary"></i>
-                            <h2 className="my-3">Checkout form</h2>
-                            <p className="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has
-                        a validation state that can be triggered by attempting to submit the form without completing it.</p>
-                        </div> */}
                         <div className="row py-5">
                             <div className="col-md-4 order-md-2 mb-4">
                                 <h4 className="d-flex justify-content-between align-items-center mb-3">
                                     <span className="text-muted">Your cart</span>
-                                    <span className="badge badge-secondary badge-pill">3</span>
+                                    <span className="badge badge-secondary badge-pill">{items.length}</span>
                                 </h4>
                                 <ul className="list-group mb-3">
-                                    <li className="list-group-item d-flex justify-content-between lh-condensed">
-                                        <div>
-                                            <h6 className="my-0">Product name</h6>
-                                            <small className="text-muted">Brief description</small>
-                                        </div>
-                                        <span className="text-muted">$12</span>
-                                    </li>
-                                    <li className="list-group-item d-flex justify-content-between lh-condensed">
-                                        <div>
-                                            <h6 className="my-0">Second product</h6>
-                                            <small className="text-muted">Brief description</small>
-                                        </div>
-                                        <span className="text-muted">$8</span>
-                                    </li>
-                                    <li className="list-group-item d-flex justify-content-between lh-condensed">
-                                        <div>
-                                            <h6 className="my-0">Third item</h6>
-                                            <small className="text-muted">Brief description</small>
-                                        </div>
-                                        <span className="text-muted">$5</span>
-                                    </li>
-                                    <li className="list-group-item d-flex justify-content-between bg-light">
-                                        <div className="text-success">
-                                            <h6 className="my-0">Promo code</h6>
-                                            <small>EXAMPLE CODE</small>
-                                        </div>
-                                        <span className="text-success">-$5</span>
-                                    </li>
+                                    {itemHtml}
                                     <li className="list-group-item d-flex justify-content-between">
-                                        <span>Total (USD)</span>
-                                        <strong>$20</strong>
+                                        <span>Total (KES)</span>
+                                        <strong>KES {total}</strong>
                                     </li>
                                 </ul>
-                                <form className="card p-2">
-                                    <div className="input-group">
-                                        <input type="text" className="form-control" placeholder="Promo code" />
-                                        <div className="input-group-append">
-                                            <button type="submit" className="btn btn-secondary">Redeem</button>
-                                        </div>
-                                    </div>
-                                </form>
+                                
                             </div>
                             <div className="col-md-8 order-md-1">
                                 <h4 className="mb-3">Billing address</h4>
@@ -91,28 +105,7 @@ export const Checkout = ({ location }) => {
                                         </div>
                                     </div>
 
-                                    {/* <div className="mb-3">
-                                                    <label htmlFor="username">Username</label>
-                                                    <div className="input-group">
-                                                        <div className="input-group-prepend">
-                                                            <span className="input-group-text">@</span>
-                                                        </div>
-                                                        <input type="text" className="form-control" id="username" placeholder="Username" required />
-                                                            <div className="invalid-feedback" style={{width: 100+'%'}}>
-                                                                Your username is required.
-                                    </div>
-                                </div>
-                                                    </div> */}
 
-                                    <div className="mb-3">
-                                        <label htmlFor="email">Email
-                                    <span className="text-muted">(Optional)</span>
-                                        </label>
-                                        <input type="email" className="form-control" id="email" placeholder="you@example.com" />
-                                        <div className="invalid-feedback">
-                                            Please enter a valid email address htmlFor shipping updates.
-                                </div>
-                                    </div>
 
                                     <div className="mb-3">
                                         <label htmlFor="address">Address</label>
@@ -171,62 +164,18 @@ export const Checkout = ({ location }) => {
 
                                     <h4 className="mb-3">Payment</h4>
 
-                                    <div className="d-block my-3">
-                                        <div className="custom-control custom-radio">
-                                            <input id="credit" name="paymentMethod" type="radio" className="custom-control-input" defaultChecked required />
-                                            <label className="custom-control-label" htmlFor="credit">Credit card</label>
-                                        </div>
-                                        <div className="custom-control custom-radio">
-                                            <input id="debit" name="paymentMethod" type="radio" className="custom-control-input" required />
-                                            <label className="custom-control-label" htmlFor="debit">Debit card</label>
-                                        </div>
-                                        <div className="custom-control custom-radio">
-                                            <input id="paypal" name="paymentMethod" type="radio" className="custom-control-input" required />
-                                            <label className="custom-control-label" htmlFor="paypal">Paypal</label>
-                                        </div>
-                                    </div>
                                     <div className="row">
-                                        {/* <div className="col-md-6 mb-3">
-                                                                                                        <label htmlFor="cc-name">Name on card</label>
-                                                                                                        <input type="text" className="form-control" id="cc-name" placeholder="" required />
-                                                                                                            <small className="text-muted">Full name as displayed on card</small>
-                                                                                                            <div className="invalid-feedback">
-                                                                                                                Name on card is required
+                                        <div id="dropin-container"></div>
+                                        <button id="submit-button" className="btn btn-primary  btn-sm">Request payment method</button>  
                                     </div>
-                                </div> */}
-                                        <div className="col-md-6 mb-3">
-                                            <label htmlFor="cc-number">Credit card number</label>
-                                            <input type="text" className="form-control" id="cc-number" placeholder="" required />
-                                            <div className="invalid-feedback">
-                                                Credit card number is required
-                                    </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-3 mb-3">
-                                            <label htmlFor="cc-expiration">Expiration</label>
-                                            <input type="text" className="form-control" id="cc-expiration" placeholder="" required />
-                                            <div className="invalid-feedback">
-                                                Expiration date required
-                                    </div>
-                                        </div>
-                                        <div className="col-md-3 mb-3">
-                                            <label htmlFor="cc-expiration">CVV</label>
-                                            <input type="text" className="form-control" id="cc-cvv" placeholder="" required />
-                                            <div className="invalid-feedback">
-                                                Security code required
-                                    </div>
-                                        </div>
-                                    </div>
+                                    
                                     <hr className="mb-4" />
-                                    <button className="btn btn-primary btn-lg btn-sm" type="submit">Continue to checkout</button>
+                                    {/* <button className="btn btn-primary btn-lg btn-sm" type="submit">Continue to checkout</button> */}
                                 </form>
                             </div>
                         </div>
                     </div>
-                    {/* <a href="#" className="btn btn-primary scrollUp">
-                                                                                                        <i className="la la-arrow-circle-o-up"></i>
-                                                                                                    </a> */}
+                   
                 </section>
             </main>
 

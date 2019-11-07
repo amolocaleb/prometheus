@@ -20,7 +20,7 @@ export const SinglePizza    =   (props) =>  {
                                 if(true == context.state.isLoaded )  {
                                     
                                    return( <>
-                                    <div className="b_y1_pizza_img"><img src={context.state.pizzaArray[0].pizza_url} className="img-fluid" /></div>
+                                    <div className="b_y1_pizza_img"><img src={context.state.pizzaArray[0].url} className="img-fluid" /></div>
                                     <div className="b_y1_pizza_details">
                                         {<PizzaInfo/>}
                                         {<ToppingsInfo/>}
@@ -112,7 +112,7 @@ const Basket = ()=> {
                                 name="size"
 
                                 id="sizeMed"
-
+                                defaultChecked
                                 value={e.medium}
 
                                 onChange={(evt)=>handleChange(evt,pizza)} />
@@ -196,10 +196,10 @@ const Basket = ()=> {
 
         console.log([name, value]);
         if ('radio' === type) {
-            oldState[`${name}_selected`] ||  (oldState[`${name}_selected`]   =    '') ;
-            if (value !== oldState[`${name}_selected`]) {
-                // setStates({ [`${name}_selected`]: value });
-                oldState[`${name}_selected`]    =   value;
+            // oldState[`${name}_selected`] ||  (oldState[`${name}`]   =    '') ;
+            if (value !== oldState[`${name}`]) {
+                // setStates({ [`${name}`]: value });
+                oldState[`${name}`]    =   value;
             }
         } else {
 

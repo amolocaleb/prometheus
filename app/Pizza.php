@@ -14,7 +14,7 @@ class Pizza extends Model
 
      static public function pizzalist($id = null)
      {
-         $sql = "SELECT p.id as 'p_id',p.pizza_url,(SELECT price from pizza_sizes WHERE pizza_sizes.pizza_id=p_id AND pizza_sizes.size='S') as 'small',p.name,(SELECT price from pizza_sizes WHERE pizza_sizes.pizza_id=p_id AND pizza_sizes.size='M') as 'medium',(SELECT price from pizza_sizes WHERE pizza_sizes.pizza_id=p_id AND pizza_sizes.size='L') as 'large' FROM pizzas p";
+         $sql = "SELECT p.id as 'p_id',p.pizza_url AS 'url',(SELECT price from pizza_sizes WHERE pizza_sizes.pizza_id=p_id AND pizza_sizes.size='S') as 'small',p.name,(SELECT price from pizza_sizes WHERE pizza_sizes.pizza_id=p_id AND pizza_sizes.size='M') as 'medium',(SELECT price from pizza_sizes WHERE pizza_sizes.pizza_id=p_id AND pizza_sizes.size='L') as 'large' FROM pizzas p";
 
          if (!is_null($id)) {
              $sql = $sql." WHERE p.id=".intVal($id);

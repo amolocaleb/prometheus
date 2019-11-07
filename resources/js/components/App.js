@@ -5,6 +5,7 @@ import PizzaList from './PizzaList';
 import {SinglePizza} from './FunctionalComponents';
 import Home from './home';
 import {Checkout} from './Checkout';
+import Nav from './nav';
 
 
 
