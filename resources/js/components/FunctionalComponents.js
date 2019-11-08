@@ -251,3 +251,34 @@ const Basket = ()=> {
             </div>
         )
     }
+
+export const BrainTreeToken =   async   ()  =>  {
+    var form = document.querySelector('#payment-form');
+    var token = await axios.get('/api/checkout/token');
+    var client_token = token.data;
+    console.log(client_token)
+    braintree.dropin.create({
+      authorization: client_token.token,
+      selector: '#dropin-container',
+      paypal: {
+        flow: 'vault'
+      }
+    }, function (createErr, instance) {
+      if (createErr) {
+        console.log('Create Error', createErr);
+        return;
+      }
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        instance.requestPaymentMethod(function (err, payload) {
+          if (err) {
+            console.log('Request Payment Method Error', err);
+            return;
+          }
+          // Add the nonce to the form and submit
+          document.querySelector('#nonce').value = payload.nonce;
+          form.submit();
+        });
+      });
+    });
+}

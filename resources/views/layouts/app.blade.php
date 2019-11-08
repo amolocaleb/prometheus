@@ -32,5 +32,8 @@
         <div class="app"></div>
         
     </div>
+    <script>
+        console.log(location.href)
+    </script>
 </body>
 </html>

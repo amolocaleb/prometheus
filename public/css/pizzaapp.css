@@ -37,6 +37,10 @@ label {
   overflow: hidden;
 }
 
+#submit-button {
+  align-self: flex-end;
+}
+
 .custom-nav {
   display: block;
   /* position: absolute; */

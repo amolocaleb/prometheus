@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ELOOP } from 'constants';
+import {BrainTreeToken} from './FunctionalComponents'
 
 
 export const Checkout = ({ location }) => {
@@ -65,6 +66,9 @@ export const Checkout = ({ location }) => {
         
     ));
     console.log([itemHtml,cart.state])
+
+   const token =  BrainTreeToken().then(resp=>resp)
+    
     return (
         <>
             <main id="main" role="main">
@@ -164,8 +168,9 @@ export const Checkout = ({ location }) => {
 
                                     <h4 className="mb-3">Payment</h4>
 
-                                    <div className="row">
+                                    <div className="row d-flex flex-column">
                                         <div id="dropin-container"></div>
+                                        <input type="hidden" name="payment_method_nonce" id="nonce"/>
                                         <button id="submit-button" className="btn btn-primary  btn-sm">Request payment method</button>  
                                     </div>
                                     
@@ -178,7 +183,7 @@ export const Checkout = ({ location }) => {
                    
                 </section>
             </main>
-
+            
         </>);
 
 }
