@@ -275,6 +275,7 @@ export const BrainTreeToken =   async   ()  =>  {
             console.log('Request Payment Method Error', err);
             return;
           }
+          
           // Add the nonce to the form and submit
           document.querySelector('#nonce').value = payload.nonce;
           form.submit();

@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { ELOOP } from 'constants';
 import {BrainTreeToken} from './FunctionalComponents'
 
 
-export const Checkout = ({ location }) => {
+export const CheckoutFunc = ({props}) => {
 
+    console.log(props)
 
-
-    const cart = JSON.parse(location.state.state);
-    // const[pizza,setPizza]   =   useState(location.state);
-    // if  (!location.state['pizza_selected'])
-    //         setPizza((prev)=>prev['pizza_selected']=1);
+    const cart = JSON.parse(props.location.state.state);
+   
     const pizza = cart.state.pizzaArray[0];
     pizza.qty = cart.state.pizza_qty;
     pizza.price = parseInt(cart.state.size)*pizza.qty;
     
-    pizza.badge =   "pizza"
+    pizza.badge =   "pizza";
     const items = [];
     let total   =   parseInt(pizza.price);
     items.push(pizza);
@@ -67,7 +65,7 @@ export const Checkout = ({ location }) => {
     ));
     console.log([itemHtml,cart.state])
 
-   const token =  BrainTreeToken().then(resp=>resp)
+//    const token =  BrainTreeToken().then(resp=>resp)
     
     return (
         <>
@@ -89,96 +87,96 @@ export const Checkout = ({ location }) => {
                                 </ul>
                                 
                             </div>
-                            <div className="col-md-8 order-md-1">
-                                <h4 className="mb-3">Billing address</h4>
-                                <form className="needs-validation" noValidate>
-                                    <div className="row">
-                                        <div className="col-md-6 mb-3">
-                                            <label htmlFor="firstName">First name</label>
-                                            <input type="text" className="form-control" id="firstName" placeholder="" defaultValue="" required />
-                                            <div className="invalid-feedback">
-                                                Valid first name is required.
+                                <div className="col-md-8 order-md-1">
+                                    <h4 className="mb-3">Billing address</h4>
+                                    <form className="needs-validation" id="payment-form" noValidate method="post" action="/api/checkout">
+                                        <div className="row">
+                                            <div className="col-md-6 mb-3">
+                                                <label htmlFor="firstName">First name</label>
+                                                <input type="text" className="form-control" id="firstName" placeholder="" defaultValue="" required />
+                                                <div className="invalid-feedback">
+                                                    Valid first name is required.
+                                                </div>
+                                            </div>
+                                            <div className="col-md-6 mb-3">
+                                                <label htmlFor="lastName">Last name</label>
+                                                <input type="text" className="form-control" id="lastName" placeholder="" defaultValue="" required />
+                                                <div className="invalid-feedback">
+                                                    Valid last name is required.
+                                        </div>
                                             </div>
                                         </div>
-                                        <div className="col-md-6 mb-3">
-                                            <label htmlFor="lastName">Last name</label>
-                                            <input type="text" className="form-control" id="lastName" placeholder="" defaultValue="" required />
+
+
+
+                                        <div className="mb-3">
+                                            <label htmlFor="address">Address</label>
+                                            <input type="text" className="form-control" id="address" placeholder="1234 Main St" required />
                                             <div className="invalid-feedback">
-                                                Valid last name is required.
+                                                Please enter your shipping address.
                                     </div>
                                         </div>
-                                    </div>
 
-
-
-                                    <div className="mb-3">
-                                        <label htmlFor="address">Address</label>
-                                        <input type="text" className="form-control" id="address" placeholder="1234 Main St" required />
-                                        <div className="invalid-feedback">
-                                            Please enter your shipping address.
-                                </div>
-                                    </div>
-
-                                    <div className="mb-3">
-                                        <label htmlFor="address2">Address 2
-                                                                    <span className="text-muted">(Optional)</span>
-                                        </label>
-                                        <input type="text" className="form-control" id="address2" placeholder="Apartment or suite" />
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col-md-5 mb-3">
-                                            <label htmlFor="country">Country</label>
-                                            <select className="custom-select d-block w-100" id="country" required >
-                                                <option defaultValue="">Choose...</option>
-                                                <option>United States</option>
-                                            </select>
-                                            <div className="invalid-feedback">
-                                                Please select a valid country.
-                                    </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="address2">Address 2
+                                                                        <span className="text-muted">(Optional)</span>
+                                            </label>
+                                            <input type="text" className="form-control" id="address2" placeholder="Apartment or suite" />
                                         </div>
-                                        <div className="col-md-4 mb-3">
-                                            <label htmlFor="state">State</label>
-                                            <select className="custom-select d-block w-100" id="state" required>
-                                                <option defaultValue="">Choose...</option>
-                                                <option>California</option>
-                                            </select>
-                                            <div className="invalid-feedback">
-                                                Please provide a valid state.
-                                    </div>
-                                        </div>
-                                        <div className="col-md-3 mb-3">
-                                            <label htmlFor="zip">Zip</label>
-                                            <input type="text" className="form-control" id="zip" placeholder="" required />
-                                            <div className="invalid-feedback">
-                                                Zip code required.
-                                    </div>
-                                        </div>
-                                    </div>
-                                    <hr className="mb-4" />
-                                    <div className="custom-control custom-checkbox">
-                                        <input type="checkbox" className="custom-control-input" id="same-address" />
-                                        <label className="custom-control-label" htmlFor="same-address">Shipping address is the same as my billing address</label>
-                                    </div>
-                                    <div className="custom-control custom-checkbox">
-                                        <input type="checkbox" className="custom-control-input" id="save-info" />
-                                        <label className="custom-control-label" htmlFor="save-info">Save this information htmlFor next time</label>
-                                    </div>
-                                    <hr className="mb-4" />
 
-                                    <h4 className="mb-3">Payment</h4>
+                                        <div className="row">
+                                            <div className="col-md-5 mb-3">
+                                                <label htmlFor="country">Country</label>
+                                                <select className="custom-select d-block w-100" id="country" required >
+                                                    <option defaultValue="">Choose...</option>
+                                                    <option>United States</option>
+                                                </select>
+                                                <div className="invalid-feedback">
+                                                    Please select a valid country.
+                                        </div>
+                                            </div>
+                                            <div className="col-md-4 mb-3">
+                                                <label htmlFor="state">State</label>
+                                                <select className="custom-select d-block w-100" id="state" required>
+                                                    <option defaultValue="">Choose...</option>
+                                                    <option>California</option>
+                                                </select>
+                                                <div className="invalid-feedback">
+                                                    Please provide a valid state.
+                                        </div>
+                                            </div>
+                                            <div className="col-md-3 mb-3">
+                                                <label htmlFor="zip">Zip</label>
+                                                <input type="text" className="form-control" id="zip" placeholder="" required />
+                                                <div className="invalid-feedback">
+                                                    Zip code required.
+                                        </div>
+                                            </div>
+                                        </div>
+                                        <hr className="mb-4" />
+                                        <div className="custom-control custom-checkbox">
+                                            <input type="checkbox" className="custom-control-input" id="same-address" />
+                                            <label className="custom-control-label" htmlFor="same-address">Shipping address is the same as my billing address</label>
+                                        </div>
+                                        <div className="custom-control custom-checkbox">
+                                            <input type="checkbox" className="custom-control-input" id="save-info" />
+                                            <label className="custom-control-label" htmlFor="save-info">Save this information html next time</label>
+                                        </div>
+                                        <hr className="mb-4" />
 
-                                    <div className="row d-flex flex-column">
-                                        <div id="dropin-container"></div>
-                                        <input type="hidden" name="payment_method_nonce" id="nonce"/>
-                                        <button id="submit-button" className="btn btn-primary  btn-sm">Request payment method</button>  
-                                    </div>
+                                        <h4 className="mb-3">Payment</h4>
+
+                                        <div className="row d-flex flex-column">
+                                            <div id="dropin-container"></div>
+                                            <input type="hidden" name="payment_method_nonce" id="nonce"/>
+                                            <button id="submit-button" className="btn btn-primary  btn-sm">Confirm Purchase</button>  
+                                        </div>
+                                        
+                                        <hr className="mb-4" />
                                     
-                                    <hr className="mb-4" />
-                                    {/* <button className="btn btn-primary btn-lg btn-sm" type="submit">Continue to checkout</button> */}
-                                </form>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
                     </div>
                    
                 </section>
@@ -186,4 +184,26 @@ export const Checkout = ({ location }) => {
             
         </>);
 
+}
+
+export class Checkout extends Component{
+    constructor(props) {
+        super(props)
+        
+        console.log(this.props)
+        
+    
+    }
+    componentDidMount(){
+        BrainTreeToken();
+     }
+
+    render(){
+        return (
+            <CheckoutFunc props={this.props} />
+        )
+    }
+
+    
+    
 }

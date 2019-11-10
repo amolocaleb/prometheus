@@ -1598,7 +1598,7 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1929,28 +1929,6 @@ module.exports = {
   extend: extend,
   trim: trim
 };
-
-
-/***/ }),
-
-/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
-/*!************************************************************!*\
-  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
 
 
 /***/ }),
@@ -7487,6 +7465,28 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 
 module.exports = hoistNonReactStatics;
+
+
+/***/ }),
+
+/***/ "./node_modules/is-buffer/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/is-buffer/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
 
 
 /***/ }),
@@ -74091,26 +74091,43 @@ function (_Component) {
 /*!*********************************************!*\
   !*** ./resources/js/components/Checkout.js ***!
   \*********************************************/
-/*! exports provided: Checkout */
+/*! exports provided: CheckoutFunc, Checkout */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckoutFunc", function() { return CheckoutFunc; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Checkout", function() { return Checkout; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! constants */ "./node_modules/constants-browserify/constants.json");
 var constants__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! constants */ "./node_modules/constants-browserify/constants.json", 1);
 /* harmony import */ var _FunctionalComponents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FunctionalComponents */ "./resources/js/components/FunctionalComponents.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
-var Checkout = function Checkout(_ref) {
-  var location = _ref.location;
-  var cart = JSON.parse(location.state.state); // const[pizza,setPizza]   =   useState(location.state);
-  // if  (!location.state['pizza_selected'])
-  //         setPizza((prev)=>prev['pizza_selected']=1);
 
+var CheckoutFunc = function CheckoutFunc(_ref) {
+  var props = _ref.props;
+  console.log(props);
+  var cart = JSON.parse(props.location.state.state);
   var pizza = cart.state.pizzaArray[0];
   pizza.qty = cart.state.pizza_qty;
   pizza.price = parseInt(cart.state.size) * pizza.qty;
@@ -74168,10 +74185,8 @@ var Checkout = function Checkout(_ref) {
       className: "text-muted"
     }, "KES ", el.price));
   });
-  console.log([itemHtml, cart.state]);
-  var token = Object(_FunctionalComponents__WEBPACK_IMPORTED_MODULE_2__["BrainTreeToken"])().then(function (resp) {
-    return resp;
-  });
+  console.log([itemHtml, cart.state]); //    const token =  BrainTreeToken().then(resp=>resp)
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     id: "main",
     role: "main"
@@ -74199,7 +74214,10 @@ var Checkout = function Checkout(_ref) {
     className: "mb-3"
   }, "Billing address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "needs-validation",
-    noValidate: true
+    id: "payment-form",
+    noValidate: true,
+    method: "post",
+    action: "/api/checkout"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74309,7 +74327,7 @@ var Checkout = function Checkout(_ref) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "custom-control-label",
     htmlFor: "save-info"
-  }, "Save this information htmlFor next time")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+  }, "Save this information html next time")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
     className: "mb-4"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "mb-3"
@@ -74324,10 +74342,41 @@ var Checkout = function Checkout(_ref) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     id: "submit-button",
     className: "btn btn-primary  btn-sm"
-  }, "Request payment method")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+  }, "Confirm Purchase")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
     className: "mb-4"
   }))))))));
 };
+var Checkout =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Checkout, _Component);
+
+  function Checkout(props) {
+    var _this;
+
+    _classCallCheck(this, Checkout);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Checkout).call(this, props));
+    console.log(_this.props);
+    return _this;
+  }
+
+  _createClass(Checkout, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      Object(_FunctionalComponents__WEBPACK_IMPORTED_MODULE_2__["BrainTreeToken"])();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CheckoutFunc, {
+        props: this.props
+      });
+    }
+  }]);
+
+  return Checkout;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /***/ }),
 
