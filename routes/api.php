@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,19 +18,7 @@ use Illuminate\Http\Request;
 
 Route::get('/pizzalist','Api\PizzaController@index');
 Route::get('/pizzalist/{id}','Api\PizzaController@single');
-Route::get('/checkout/token',function(Request $request){
-    $gateway = new Braintree\Gateway([
-        'environment' => config('services.braintree.environment'),
-        'merchantId' => config('services.braintree.merchantId'),
-        'publicKey' => config('services.braintree.publicKey'),
-        'privateKey' => config('services.braintree.privateKey')
-    ]);
-
-    $token  =   $gateway->ClientToken()->generate();
-    return response([
-        'token' =>  $token
-    ]);
-});
+Route::get('/checkout/token',"Api\CheckoutController@token");
 
 Route::post('/checkout',function(Request $request){
     $gateway = new Braintree\Gateway([

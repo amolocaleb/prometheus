@@ -67360,7 +67360,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74175,7 +74175,7 @@ var CheckoutFunc = function CheckoutFunc(_ref) {
       alt: el.name,
       className: "img-thumbnail",
       srcSet: ""
-    })) : '', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    })) : "", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
       className: "ml-2 text-muted"
     }, "Qty"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "ml-2 mr-2  small "
@@ -74269,45 +74269,7 @@ var CheckoutFunc = function CheckoutFunc(_ref) {
     className: "form-control",
     id: "address2",
     placeholder: "Apartment or suite"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-5 mb-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "country"
-  }, "Country"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    className: "custom-select d-block w-100",
-    id: "country",
-    required: true
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    defaultValue: ""
-  }, "Choose..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "United States")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "invalid-feedback"
-  }, "Please select a valid country.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-4 mb-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "state"
-  }, "State"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    className: "custom-select d-block w-100",
-    id: "state",
-    required: true
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    defaultValue: ""
-  }, "Choose..."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "California")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "invalid-feedback"
-  }, "Please provide a valid state.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-3 mb-3"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "zip"
-  }, "Zip"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "form-control",
-    id: "zip",
-    placeholder: "",
-    required: true
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "invalid-feedback"
-  }, "Zip code required."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
     className: "mb-4"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "custom-control custom-checkbox"
@@ -74318,16 +74280,11 @@ var CheckoutFunc = function CheckoutFunc(_ref) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "custom-control-label",
     htmlFor: "same-address"
-  }, "Shipping address is the same as my billing address")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "custom-control custom-checkbox"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "checkbox",
-    className: "custom-control-input",
-    id: "save-info"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "custom-control-label",
-    htmlFor: "save-info"
-  }, "Save this information html next time")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+  }, "Shipping address is the same as my billing address")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "hidden",
+    name: "amount",
+    defaultValue: total
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
     className: "mb-4"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
     className: "mb-3"
