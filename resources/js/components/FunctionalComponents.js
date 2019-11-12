@@ -277,6 +277,7 @@ export const BrainTreeToken =   async   ()  =>  {
           }
           
           // Add the nonce to the form and submit
+          document.querySelector("#orderId").value  =   Math.random().toString(36).substr(2,11).toUpperCase();
           document.querySelector('#nonce').value = payload.nonce;
           form.submit();
         });

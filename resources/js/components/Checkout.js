@@ -3,10 +3,10 @@ import { ELOOP } from "constants";
 import { BrainTreeToken } from "./FunctionalComponents";
 
 export const CheckoutFunc = ({ props }) => {
-	console.log(props);
+	console.log(["b4",props]);
 
 	const cart = JSON.parse(props.location.state.state);
-
+	console.log(["after",props]);
 	const pizza = cart.state.pizzaArray[0];
 	pizza.qty = cart.state.pizza_qty;
 	pizza.price = parseInt(cart.state.size) * pizza.qty;
@@ -57,8 +57,8 @@ export const CheckoutFunc = ({ props }) => {
 						/>
 					</span>
 				) : (
-					""
-				)}
+						""
+					)}
 				<small className="ml-2 text-muted">Qty</small>{" "}
 				<span className="ml-2 mr-2  small ">{el.qty || 1}</span>
 				<span className="badge badge-pill badge-info">{el.badge}</span>
@@ -111,6 +111,7 @@ export const CheckoutFunc = ({ props }) => {
 												type="text"
 												className="form-control"
 												id="firstName"
+												name="fname"
 												placeholder=""
 												defaultValue=""
 												required
@@ -126,6 +127,7 @@ export const CheckoutFunc = ({ props }) => {
 											<input
 												type="text"
 												className="form-control"
+												name="lname"
 												id="lastName"
 												placeholder=""
 												defaultValue=""
@@ -137,11 +139,49 @@ export const CheckoutFunc = ({ props }) => {
 										</div>
 									</div>
 
+
+									<div className="row">
+										<div className="col-md-6 mb-3">
+											<label htmlFor="address">Email</label>
+											<input
+												type="text"
+												className="form-control"
+												name="email"
+												id="address"
+												placeholder="john@doe.com"
+												required
+											/>
+											<div className="invalid-feedback">
+												Please enter your email address.
+										</div>
+										</div>
+										<div className="col-md-6 mb-3">
+											<label htmlFor="phone">
+												Phone
+											</label>
+											<input
+												type="text"
+												className="form-control"
+												name="phone"
+												id="phone"
+												placeholder="+254700234111"
+												defaultValue=""
+												required
+											/>
+											<div className="invalid-feedback">
+												Valid last name is required.
+											</div>
+										</div>
+									</div>
+
+
+									
 									<div className="mb-3">
 										<label htmlFor="address">Address</label>
 										<input
 											type="text"
 											className="form-control"
+											name="streetAddress"
 											id="address"
 											placeholder="1234 Main St"
 											required
@@ -161,27 +201,17 @@ export const CheckoutFunc = ({ props }) => {
 										<input
 											type="text"
 											className="form-control"
+											name="extendedAddress"
 											id="address2"
 											placeholder="Apartment or suite"
 										/>
 									</div>
 
-									<hr className="mb-4" />
-									<div className="custom-control custom-checkbox">
-										<input
-											type="checkbox"
-											className="custom-control-input"
-											id="same-address"
-										/>
-										<label
-											className="custom-control-label"
-											htmlFor="same-address"
-										>
-											Shipping address is the same as my
-											billing address
-										</label>
-									</div>
-									<input type="hidden" name="amount" defaultValue={total}/>
+
+
+									<input type="hidden" name="amount" defaultValue={total} />
+									<input type="hidden" name="orderId" id="orderId" />
+									<input type="hidden" name="orderDetails" defaultValue={props.location.state.state} />
 									<hr className="mb-4" />
 
 									<h4 className="mb-3">Payment</h4>
@@ -193,12 +223,14 @@ export const CheckoutFunc = ({ props }) => {
 											name="payment_method_nonce"
 											id="nonce"
 										/>
-										<button
+										<input
+											type="submit"
 											id="submit-button"
 											className="btn btn-primary  btn-sm"
-										>
-											Confirm Purchase
-										</button>
+											defaultValue="Confirm Purchase"
+										/>
+
+
 									</div>
 
 									<hr className="mb-4" />

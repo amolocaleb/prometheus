@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "063f65b14ac3f5c161829d839efdcef9",
+    "content-hash": "87d113614130fbc2a788b05d68ae0b9e",
     "packages": [
         {
             "name": "akaunting/money",
@@ -794,6 +794,62 @@
                 "trusted proxy"
             ],
             "time": "2019-09-03T16:45:42+00:00"
+        },
+        {
+            "name": "gocanto/converter",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gocanto/converter.git",
+                "reference": "f14ce3257b9896f495faf973955e75877896e470"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gocanto/converter/zipball/f14ce3257b9896f495faf973955e75877896e470",
+                "reference": "f14ce3257b9896f495faf973955e75877896e470",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.13",
+                "infection/infection": "^0.11.4",
+                "mockery/mockery": "^1.0.0",
+                "phpmd/phpmd": "^2.6",
+                "phpro/grumphp": "^0.14.2",
+                "phpstan/phpstan": "^0.11",
+                "phpstan/phpstan-mockery": "^0.11.0",
+                "phpstan/phpstan-phpunit": "^0.11.0",
+                "phpunit/phpunit": "^8.0",
+                "squizlabs/php_codesniffer": "^3.3",
+                "vimeo/psalm": "^3.4"
+            },
+            "type": "php-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Gocanto\\Converter\\": "src",
+                    "Gocanto\\Converter\\Examples\\": "examples"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gustavo Ocanto",
+                    "email": "gustavoocanto@gmail.com"
+                }
+            ],
+            "description": "A simple currency converter library.",
+            "homepage": "https://github.com/gocanto/converter",
+            "keywords": [
+                "converter",
+                "currency",
+                "php"
+            ],
+            "time": "2019-06-11T03:26:20+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

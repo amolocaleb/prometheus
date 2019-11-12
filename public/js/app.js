@@ -1598,7 +1598,7 @@ module.exports = function spread(callback) {
 
 
 var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/axios/node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1929,6 +1929,28 @@ module.exports = {
   extend: extend,
   trim: trim
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/axios/node_modules/is-buffer/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/axios/node_modules/is-buffer/index.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+module.exports = function isBuffer (obj) {
+  return obj != null && obj.constructor != null &&
+    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
+}
 
 
 /***/ }),
@@ -7465,28 +7487,6 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 
 module.exports = hoistNonReactStatics;
-
-
-/***/ }),
-
-/***/ "./node_modules/is-buffer/index.js":
-/*!*****************************************!*\
-  !*** ./node_modules/is-buffer/index.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/*!
- * Determine if an object is a Buffer
- *
- * @author   Feross Aboukhadijeh <https://feross.org>
- * @license  MIT
- */
-
-module.exports = function isBuffer (obj) {
-  return obj != null && obj.constructor != null &&
-    typeof obj.constructor.isBuffer === 'function' && obj.constructor.isBuffer(obj)
-}
 
 
 /***/ }),
@@ -67360,7 +67360,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74126,8 +74126,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 var CheckoutFunc = function CheckoutFunc(_ref) {
   var props = _ref.props;
-  console.log(props);
+  console.log(["b4", props]);
   var cart = JSON.parse(props.location.state.state);
+  console.log(["after", props]);
   var pizza = cart.state.pizzaArray[0];
   pizza.qty = cart.state.pizza_qty;
   pizza.price = parseInt(cart.state.size) * pizza.qty;
@@ -74228,6 +74229,7 @@ var CheckoutFunc = function CheckoutFunc(_ref) {
     type: "text",
     className: "form-control",
     id: "firstName",
+    name: "fname",
     placeholder: "",
     defaultValue: "",
     required: true
@@ -74240,8 +74242,38 @@ var CheckoutFunc = function CheckoutFunc(_ref) {
   }, "Last name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     className: "form-control",
+    name: "lname",
     id: "lastName",
     placeholder: "",
+    defaultValue: "",
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Valid last name is required."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-6 mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "address"
+  }, "Email"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    name: "email",
+    id: "address",
+    placeholder: "john@doe.com",
+    required: true
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "invalid-feedback"
+  }, "Please enter your email address.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-6 mb-3"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "phone"
+  }, "Phone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    name: "phone",
+    id: "phone",
+    placeholder: "+254700234111",
     defaultValue: "",
     required: true
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74253,6 +74285,7 @@ var CheckoutFunc = function CheckoutFunc(_ref) {
   }, "Address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     className: "form-control",
+    name: "streetAddress",
     id: "address",
     placeholder: "1234 Main St",
     required: true
@@ -74267,23 +74300,21 @@ var CheckoutFunc = function CheckoutFunc(_ref) {
   }, "(Optional)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
     className: "form-control",
+    name: "extendedAddress",
     id: "address2",
     placeholder: "Apartment or suite"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-    className: "mb-4"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "custom-control custom-checkbox"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "checkbox",
-    className: "custom-control-input",
-    id: "same-address"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    className: "custom-control-label",
-    htmlFor: "same-address"
-  }, "Shipping address is the same as my billing address")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "hidden",
     name: "amount",
     defaultValue: total
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "hidden",
+    name: "orderId",
+    id: "orderId"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "hidden",
+    name: "orderDetails",
+    defaultValue: props.location.state.state
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
     className: "mb-4"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
@@ -74296,10 +74327,12 @@ var CheckoutFunc = function CheckoutFunc(_ref) {
     type: "hidden",
     name: "payment_method_nonce",
     id: "nonce"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "submit",
     id: "submit-button",
-    className: "btn btn-primary  btn-sm"
-  }, "Confirm Purchase")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+    className: "btn btn-primary  btn-sm",
+    defaultValue: "Confirm Purchase"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
     className: "mb-4"
   }))))))));
 };
@@ -74640,6 +74673,7 @@ function () {
                   } // Add the nonce to the form and submit
 
 
+                  document.querySelector("#orderId").value = Math.random().toString(36).substr(2, 11).toUpperCase();
                   document.querySelector('#nonce').value = payload.nonce;
                   form.submit();
                 });
