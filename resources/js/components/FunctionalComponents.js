@@ -281,7 +281,7 @@ export const BrainTreeToken =   async   ()  =>  {
           document.querySelector('#nonce').value = payload.nonce;
           console.log(form)
         //   debugger;
-        //   form.submit();
+          form.submit();
         });
       });
     });

@@ -2,7 +2,7 @@
   "name": "pizzaapp",
   "version": "1.0.0",
   "description": "<p align=\"center\"><img src=\"https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg\" width=\"400\"></p>",
-  "main": " ",
+  "main": "webpack.mix.js",
   "directories": {
     "test": "tests"
   },
@@ -16,8 +16,6 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.0.0",
-    "@material-ui/core": "^4.5.1",
-    "@material-ui/icons": "^4.5.1",
     "axios": "^0.19",
     "babel-plugin-react-html-attrs": "^2.1.0",
     "bootstrap": "^4.3.1",
@@ -33,6 +31,7 @@
     "sass-loader": "^7.1.0"
   },
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "npm run development -- --watch",
@@ -45,7 +44,7 @@
     "type": "git",
     "url": "git+https://github.com/amolocaleb/prometheus.git"
   },
-  "author": "amolocaleb",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/amolocaleb/prometheus/issues"

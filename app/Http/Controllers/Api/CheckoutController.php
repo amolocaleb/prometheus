@@ -95,6 +95,7 @@ class CheckoutController extends Controller
         $transaction_id =   $transaction->id;
         $order_no    =   $transaction->orderId;
         $total =   $req->amount;
+        $email  =   $req->email;
         $name   =   $transaction->customer['firstName'] . " " . $transaction->customer['lastName'];
         $phone  =   $transaction->customer["phone"];
         $address    =  sprintf("%s \n %s", $transaction->shipping['streetAddress'], $transaction->shipping['extendedAddress']);
@@ -107,6 +108,7 @@ class CheckoutController extends Controller
             $customer_id =   DB::table('customers')->insertGetId(
                 compact(
                     "name",
+                    "email",
                     "phone",
                     "address",
                     "cardType",
