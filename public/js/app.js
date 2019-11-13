@@ -74165,6 +74165,8 @@ var CheckoutFunc = function CheckoutFunc(_ref) {
     });
   }
 
+  console.log(['items', items]);
+  var itemsBought = JSON.stringify(items.slice(0));
   var itemHtml = items.map(function (el, i) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: i,
@@ -74314,7 +74316,7 @@ var CheckoutFunc = function CheckoutFunc(_ref) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "hidden",
     name: "orderDetails",
-    defaultValue: props.location.state.state
+    defaultValue: itemsBought
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
     className: "mb-4"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
@@ -74675,7 +74677,8 @@ function () {
 
                   document.querySelector("#orderId").value = Math.random().toString(36).substr(2, 11).toUpperCase();
                   document.querySelector('#nonce').value = payload.nonce;
-                  form.submit();
+                  console.log(form); //   debugger;
+                  //   form.submit();
                 });
               });
             });
@@ -75230,6 +75233,17 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 
 /***/ }),
 
+/***/ "./resources/sass/b3.scss":
+/*!********************************!*\
+  !*** ./resources/sass/b3.scss ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/pizzaapp.scss":
 /*!**************************************!*\
   !*** ./resources/sass/pizzaapp.scss ***!
@@ -75242,14 +75256,15 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/pizzaapp.scss ***!
-  \********************************************************************************************/
+/*!*********************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/b3.scss ./resources/sass/pizzaapp.scss ***!
+  \*********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /var/www/html/PizzaApp/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /var/www/html/PizzaApp/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/PizzaApp/resources/sass/b3.scss */"./resources/sass/b3.scss");
 module.exports = __webpack_require__(/*! /var/www/html/PizzaApp/resources/sass/pizzaapp.scss */"./resources/sass/pizzaapp.scss");
 
 

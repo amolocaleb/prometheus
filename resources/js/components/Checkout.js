@@ -27,6 +27,7 @@ export const CheckoutFunc = ({ props }) => {
 			}
 		});
 	}
+
 	if (cart.state.toppings_selected.length) {
 		cart.state.toppings_selected.forEach(element => {
 			let obj = cart.state.toppingsArray.find(el => {
@@ -39,6 +40,9 @@ export const CheckoutFunc = ({ props }) => {
 			}
 		});
 	}
+console.log(['items',items])
+const itemsBought	=	JSON.stringify(items.slice(0));
+
 
 	const itemHtml = items.map((el, i) => (
 		<li
@@ -211,7 +215,7 @@ export const CheckoutFunc = ({ props }) => {
 
 									<input type="hidden" name="amount" defaultValue={total} />
 									<input type="hidden" name="orderId" id="orderId" />
-									<input type="hidden" name="orderDetails" defaultValue={props.location.state.state} />
+									<input type="hidden" name="orderDetails" defaultValue={itemsBought} />
 									<hr className="mb-4" />
 
 									<h4 className="mb-3">Payment</h4>
