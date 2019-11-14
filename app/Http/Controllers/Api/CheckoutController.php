@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use PDF;
 use Braintree\Gateway;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -56,7 +57,6 @@ class CheckoutController extends Controller
             ],
             'customer' =>
             [
-                // 'id'    =>  $req->user_id,
                 'email' =>  $req->email,
                 'firstName' =>  $req->fname,
                 'lastName'  =>  $req->lname,
@@ -66,26 +66,19 @@ class CheckoutController extends Controller
             [
                 'firstName' =>  $req->fname,
                 'lastName'  =>  $req->lname,
-                // 'locality'  =>  $req->locality,
-                // 'region'    =>  $req->region,
                 'streetAddress' =>  $req->streetAddress,
                 'extendedAddress' => $req->extendedAddress
             ],
         ]);
         if ($result->success) {
             $transaction = $result->transaction;
-            // echo "<pre>";
-            // var_dump($transaction);exit;
-
-
             return $this->_storeToDb($transaction,$req);
         } else {
             $errorString = "";
             foreach ($result->errors->deepAll() as $error) {
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
             }
-            // $_SESSION["errors"] = $errorString;
-            // header("Location: " . $baseUrl . "index.php");
+           
             return response(["error_msg" => $error->message]);
         }
     }
@@ -130,7 +123,7 @@ class CheckoutController extends Controller
             $response   =   ["db_success"   =>  "Order Placed Successfully",
                              "transaction_id"   =>  $transaction_id,
                              "url"  =>  URL::temporarySignedRoute(
-                                 'pdf',now()->addMinutes(15),
+                                 'receipt',now()->addMinutes(15),
                                  ["orderId"=>$order_no]
                              )
         ];
@@ -142,48 +135,44 @@ class CheckoutController extends Controller
         return response($response);
        
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+
+    function pizzaOrder($orderId)    {
+        $orderDetails = DB::table('orders AS o')
+        ->join('customers AS c',"o.customer_id",'=','c.id')
+        ->select('c.name','c.phone','c.address','c.email','o.total','o.order','o.placed_at','o.transaction_id')
+        ->where('o.order_no','=',$orderId)
+        ->get();
+
+        $orderDetails = $orderDetails[0];
+        $o = \json_decode($orderDetails->order);
+        $orderDetails->order = $o;
+        return $orderDetails;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    function receipt(Request $request)  {
+        if (!$request->hasValidSignature())    {
+            abort(404);
+        }
+        $orderId   =   $request->orderId;
+        $orderDetails   =  $this->pizzaOrder($orderId);
+                            
+        $downloadLink   =    URL::temporarySignedRoute(
+            'download_receipt',now()->addMinutes(15),
+            ["orderId"=>$orderId]
+        );
+        
+        return view('invoice',compact("orderId","orderDetails","downloadLink"));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    function receiptPdf(Request $request){
+        if (!$request->hasValidSignature())    {
+            abort(404);
+        }
+        $orderId   =   $request->orderId;
+        $orderDetails   =  $this->pizzaOrder($orderId);
+        PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        $pdf =  PDF::loadView('pdf',compact("orderId","orderDetails"));
+        return $pdf->download("Order-{$orderId}.pdf");
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+   
 }

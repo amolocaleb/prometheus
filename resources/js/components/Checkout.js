@@ -3,19 +3,22 @@ import { ELOOP } from "constants";
 import { BrainTreeToken } from "./FunctionalComponents";
 
 export const CheckoutFunc = ({ props }) => {
-	console.log(["b4",props]);
+	console.log(["b4", props]);
 
 	const cart = JSON.parse(props.location.state.state);
-	console.log(["after",props]);
+	console.log(["after", props]);
 	const pizza = cart.state.pizzaArray[0];
 	pizza.qty = cart.state.pizza_qty;
 	pizza.price = parseInt(cart.state.size) * pizza.qty;
 
 	pizza.badge = "pizza";
 	const items = [];
+	let itemsBought = {};
 	let total = parseInt(pizza.price);
 	items.push(pizza);
+	itemsBought[pizza.badge] = pizza;
 	if (cart.state.drinks_selected.length) {
+		itemsBought["drinks"] = [];
 		cart.state.drinks_selected.forEach(element => {
 			let obj = cart.state.drinksArray.find(el => {
 				return el.id == parseInt(element);
@@ -24,11 +27,13 @@ export const CheckoutFunc = ({ props }) => {
 				obj.badge = "drinks";
 				total += parseInt(obj.price);
 				items.push(obj);
+				itemsBought[obj.badge].push(obj);
 			}
 		});
 	}
 
 	if (cart.state.toppings_selected.length) {
+		itemsBought["toppings"] = [];
 		cart.state.toppings_selected.forEach(element => {
 			let obj = cart.state.toppingsArray.find(el => {
 				return el.id == parseInt(element);
@@ -37,12 +42,12 @@ export const CheckoutFunc = ({ props }) => {
 				obj.badge = "toppings";
 				total += parseInt(obj.price);
 				items.push(obj);
+				itemsBought[obj.badge].push(obj);
 			}
 		});
 	}
-console.log(['items',items])
-const itemsBought	=	JSON.stringify(items.slice(0));
-
+	console.log(["items", items]);
+	itemsBought = JSON.stringify(itemsBought);
 
 	const itemHtml = items.map((el, i) => (
 		<li
@@ -61,8 +66,8 @@ const itemsBought	=	JSON.stringify(items.slice(0));
 						/>
 					</span>
 				) : (
-						""
-					)}
+					""
+				)}
 				<small className="ml-2 text-muted">Qty</small>{" "}
 				<span className="ml-2 mr-2  small ">{el.qty || 1}</span>
 				<span className="badge badge-pill badge-info">{el.badge}</span>
@@ -143,10 +148,11 @@ const itemsBought	=	JSON.stringify(items.slice(0));
 										</div>
 									</div>
 
-
 									<div className="row">
 										<div className="col-md-6 mb-3">
-											<label htmlFor="address">Email</label>
+											<label htmlFor="address">
+												Email
+											</label>
 											<input
 												type="text"
 												className="form-control"
@@ -157,12 +163,10 @@ const itemsBought	=	JSON.stringify(items.slice(0));
 											/>
 											<div className="invalid-feedback">
 												Please enter your email address.
-										</div>
+											</div>
 										</div>
 										<div className="col-md-6 mb-3">
-											<label htmlFor="phone">
-												Phone
-											</label>
+											<label htmlFor="phone">Phone</label>
 											<input
 												type="text"
 												className="form-control"
@@ -178,8 +182,6 @@ const itemsBought	=	JSON.stringify(items.slice(0));
 										</div>
 									</div>
 
-
-									
 									<div className="mb-3">
 										<label htmlFor="address">Address</label>
 										<input
@@ -211,20 +213,28 @@ const itemsBought	=	JSON.stringify(items.slice(0));
 										/>
 									</div>
 
-
-
-									<input type="hidden" name="amount" defaultValue={total} />
-									<input type="hidden" name="orderId" id="orderId" />
-									<input type="hidden" name="orderDetails" defaultValue={itemsBought} />
+									<input
+										type="hidden"
+										name="amount"
+										defaultValue={total}
+									/>
+									<input
+										type="hidden"
+										name="orderId"
+										id="orderId"
+									/>
+									<input
+										type="hidden"
+										name="orderDetails"
+										defaultValue={itemsBought}
+									/>
 									<hr className="mb-4" />
 
-									<h4 className="mb-3">Payment</h4>
+									
 
-									<div className="row d-flex flex-column">
-										<div id="dropin-container" >
-											
-										</div>
-										
+									<div className=" d-flex flex-column">
+										<div id="dropin-container"></div>
+
 										<input
 											type="hidden"
 											name="payment_method_nonce"
@@ -236,8 +246,6 @@ const itemsBought	=	JSON.stringify(items.slice(0));
 											className="btn btn-primary  btn-sm"
 											defaultValue="Confirm Purchase"
 										/>
-										
-
 									</div>
 
 									<hr className="mb-4" />

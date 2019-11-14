@@ -27,21 +27,9 @@ Route::get('/checkout/token',"Api\CheckoutController@token");
 Route::post('/checkout',"Api\CheckoutController@checkout");
 Route::get('/invoice',function(){
     
-    return view('invoice');
+    return view('invoce');
 });
 
-Route::get("/invoice/pdf",function(){
-    $time = date("His");
-    PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
-    $pdf =  PDF::loadView('pdf');
-    return $pdf->download("invoice-{$time}.pdf");
-});
+Route::get("/receipt","Api\CheckoutController@receipt")->name('receipt');
+Route::get("/invoice/pdf","Api\CheckoutController@receiptPdf")->name('download_receipt');
 
- Route::get("/the_pdf",function(Request $request){
-     if (!$request->hasValidSignature())    {
-         abort(404);
-     }
-     $orderId   =   $request->orderId;
-     
-     return view('invoice',compact("orderId"));
- })->name('pdf');
