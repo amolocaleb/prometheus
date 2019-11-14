@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Braintree\Gateway;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class CheckoutController extends Controller
 {
@@ -126,7 +127,13 @@ class CheckoutController extends Controller
                 )
             );
             DB::commit();
-            $response   =   ["db_success"   =>  "Order Placed Successfully"];
+            $response   =   ["db_success"   =>  "Order Placed Successfully",
+                             "transaction_id"   =>  $transaction_id,
+                             "url"  =>  URL::temporarySignedRoute(
+                                 'pdf',now()->addMinutes(15),
+                                 ["orderId"=>$order_no]
+                             )
+        ];
         } catch (\QueryException $ex) {
             DB::rollBack();
             $response = ["db_error"=>$ex->getMessage()];

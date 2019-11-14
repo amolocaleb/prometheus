@@ -221,7 +221,10 @@ const itemsBought	=	JSON.stringify(items.slice(0));
 									<h4 className="mb-3">Payment</h4>
 
 									<div className="row d-flex flex-column">
-										<div id="dropin-container" />
+										<div id="dropin-container" >
+											
+										</div>
+										
 										<input
 											type="hidden"
 											name="payment_method_nonce"
@@ -233,7 +236,7 @@ const itemsBought	=	JSON.stringify(items.slice(0));
 											className="btn btn-primary  btn-sm"
 											defaultValue="Confirm Purchase"
 										/>
-
+										
 
 									</div>
 

@@ -288,3 +288,46 @@ li.list-group-item.d-flex.justify-content-between.lh-condensed div {
   flex-basis: 220px;
 }
 
+.loader {
+  display: inline-block;
+  border: 3px solid #ccc;
+  border-radius: 50%;
+  border-top: 3px solid #3498db;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.checkout_spinner {
+  line-height: 50px;
+  margin-right: 29px;
+}
+
+.justify-center {
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+

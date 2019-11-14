@@ -18,6 +18,8 @@
 
 // use Barryvdh\DomPDF\PDF;
 
+use Illuminate\Http\Request;
+
 Route::get('/pizzalist','Api\PizzaController@index');
 Route::get('/pizzalist/{id}','Api\PizzaController@single');
 Route::get('/checkout/token',"Api\CheckoutController@token");
@@ -34,3 +36,12 @@ Route::get("/invoice/pdf",function(){
     $pdf =  PDF::loadView('pdf');
     return $pdf->download("invoice-{$time}.pdf");
 });
+
+ Route::get("/the_pdf",function(Request $request){
+     if (!$request->hasValidSignature())    {
+         abort(404);
+     }
+     $orderId   =   $request->orderId;
+     
+     return view('invoice',compact("orderId"));
+ })->name('pdf');

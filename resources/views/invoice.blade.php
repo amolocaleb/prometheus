@@ -120,7 +120,7 @@
 						</tr>
 						<tr>
 							<th>Order Number:</th>
-							<td class="text-right caps text-success">mefs534d6vvd</td>
+							<td class="text-right caps text-success"><?= $orderId; ?></td>
 						</tr>
 					</tbody>
 				</table>
