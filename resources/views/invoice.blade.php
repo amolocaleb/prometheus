@@ -140,7 +140,7 @@
                                                 <td>{{$orderDetails->order->pizza->qty}}</td>
                                                 <td class="text-right">{{$orderDetails->order->pizza->price}}</td>
                                             </tr>
-                                        @if ($orderDetails->order->drinks)
+                                        @if (isset($orderDetails->order->drinks))
                                             @foreach ($orderDetails->order->drinks as $item)
                                                 <tr>
                                                     <td>
@@ -154,7 +154,7 @@
                                             @endforeach
                                             
                                         @endif
-                                        @if ($orderDetails->order->toppings)
+                                        @if (isset($orderDetails->order->toppings))
                                             @foreach ($orderDetails->order->toppings as $item)
                                                 <tr>
                                                     <td>
