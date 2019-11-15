@@ -15,7 +15,7 @@ Route::get('/invoice',function(){
     return view('invoice');
 });
 
-Route::any('{path}','HomeController@index')->where('path','^([?!api | ?!storage]).*$');
+Route::any('{path}','HomeController@index')->where('path','^(?!(api|storage)).*$');
 // Route::get('/pizzalist','PizzaController@index');
 // Route::get('/pizzalist/{id}','PizzaController@single');
 //Auth::routes();
