@@ -29,7 +29,7 @@ export default class PizzaList extends Component {
                     <div className="card rounded">
                         <div className="card-image">
 
-                            <img className="img-fluid" src={location.origin+pizza.url} alt={`Photo of ${pizza.name}`} />
+                            <img className="img-fluid" src={pizza.url} alt={`Photo of ${pizza.name}`} />
                         </div>
 
                         <div className="card-body text-center">

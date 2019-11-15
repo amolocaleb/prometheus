@@ -67360,7 +67360,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -75106,7 +75106,7 @@ function (_Component) {
                     className: "card-image"
                   }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
                     className: "img-fluid",
-                    src: location.origin + pizza.url,
+                    src: pizza.url,
                     alt: "Photo of ".concat(pizza.name)
                   })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
                     className: "card-body text-center"
@@ -75230,7 +75230,7 @@ var Nav = function Nav() {
     className: "navbar-brand absolute-logo",
     href: "/"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "".concat(location.origin, "/storage/logo.png"),
+    src: "/storage/logo.png",
     alt: "",
     srcSet: ""
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {

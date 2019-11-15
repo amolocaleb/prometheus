@@ -10,10 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/storage/{file}',function($file){
-    
-     return $file;
-});
+
+
 
 Route::any('{path}','HomeController@index')->where('path','^(?!(api|storage)).*$');
 // Route::get('/pizzalist','PizzaController@index');

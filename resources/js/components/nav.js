@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom'
         <nav className="navbar navbar-expand-md navbar-light  m-0 p-0 custom-nav">
             <div className="container-fluid">
                 <a className="navbar-brand absolute-logo" href="/">
-                    <img src={`${location.origin}/storage/logo.png`} alt="" srcSet="" />
+                    <img src={`/storage/logo.png`} alt="" srcSet="" />
                 </a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span className="navbar-toggler-icon"></span>
