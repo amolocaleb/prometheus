@@ -18,8 +18,8 @@ Route::get('/storage/{file}',function($file){
     $ext =  end($parts);
     if ('jpg' == $ext)
         $ext = "jpeg";
-    header("Content-Type: image/{$ext}");
-     return $file;
+    $headers = "Content-Type: image/{$ext}";
+     return response()->file($file,["Content-Type: image/{$ext}"]);
 });
 
 Route::any('{path}','HomeController@index')->where('path','^(?!(api|storage)).*$');
