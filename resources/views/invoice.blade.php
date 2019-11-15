@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="col-sm-6 text-right">
-                            <img src="<?php echo p_asset('storage/logo.png') ?>" alt="logo">
+                            <img src="<?php echo p_asset('img/logo.png') ?>" alt="logo">
                         </div>
                     </div>
                     <div class="row">

@@ -45,7 +45,7 @@
 		
 		.logo::after{
 			content:"";
-			background: url(<?php echo p_asset('storage/logo.png') ?>) no-repeat center center;
+			background: url(<?php echo p_asset('img/logo.png') ?>) no-repeat center center;
 			position: absolute;
 			top:0px;
 			left: 0px;
@@ -84,7 +84,7 @@
 				</div>
 	
 				<div class="col-xs-4">
-					<img src="<?php echo p_asset('storage/logo.png') ?>" alt="logo">
+					<img src="<?php echo p_asset('img/logo.png') ?>" alt="logo">
 				</div>
 			</div>
 			<div class="row">
