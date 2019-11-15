@@ -25,10 +25,7 @@ Route::get('/pizzalist/{id}','Api\PizzaController@single');
 Route::get('/checkout/token',"Api\CheckoutController@token");
 
 Route::post('/checkout',"Api\CheckoutController@checkout");
-Route::get('/invoice',function(){
-    
-    return view('invoce');
-});
+
 
 Route::get("/receipt","Api\CheckoutController@receipt")->name('receipt');
 Route::get("/invoice/pdf","Api\CheckoutController@receiptPdf")->name('download_receipt');
