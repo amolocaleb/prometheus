@@ -12,7 +12,7 @@
 */
 Route::get('/storage/{file}',function($file){
     
-    // return $file;
+     return $file;
 });
 
 Route::any('{path}','HomeController@index')->where('path','^(?!(api|storage)).*$');
