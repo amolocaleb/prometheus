@@ -13,14 +13,14 @@
 
 
 
-Route::get('/storage/{file}',function($file){
-    $parts = explode('.',$file);
-    $ext =  end($parts);
-    if ('jpg' == $ext)
-        $ext = "jpeg";
-    $headers = "Content-Type: image/{$ext}";
-     return response()->file($file,["Content-Type: image/{$ext}"]);
-});
+// Route::get('/storage/{file}',function($file){
+//     $parts = explode('.',$file);
+//     $ext =  end($parts);
+//     if ('jpg' == $ext)
+//         $ext = "jpeg";
+//     $headers = "Content-Type: image/{$ext}";
+//      return response()->file($file,["Content-Type: image/{$ext}"]);
+// });
 
 Route::any('{path}','HomeController@index')->where('path','^(?!(api|storage)).*$');
 // Route::get('/pizzalist','PizzaController@index');

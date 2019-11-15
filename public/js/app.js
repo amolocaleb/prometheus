@@ -67360,7 +67360,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74807,7 +74807,7 @@ function (_Component) {
       }, "We don't make pizzas here.we make art "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
         className: "blockquote-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "".concat(location.origin, "/storage/2.png")
+        src: "/img/2.png"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "ip_y1_btn_wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
