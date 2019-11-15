@@ -29,7 +29,9 @@
 <body>
     <div id="app">
         <div class="navigation"></div>
-        <div class="app"></div>
+        <div class="app">
+            
+        </div>
         
     </div>
     
