@@ -13,6 +13,15 @@
 
 
 
+Route::get('/storage/{file}',function($file){
+    $parts = explode('.',$file);
+    $ext =  end($parts);
+    if ('jpg' == $ext)
+        $ext = "jpeg";
+    header("Content-Type: image/{$ext}");
+     return $file;
+});
+
 Route::any('{path}','HomeController@index')->where('path','^(?!(api|storage)).*$');
 // Route::get('/pizzalist','PizzaController@index');
 // Route::get('/pizzalist/{id}','PizzaController@single');
