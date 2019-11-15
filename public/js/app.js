@@ -75230,7 +75230,7 @@ var Nav = function Nav() {
     className: "navbar-brand absolute-logo",
     href: "/"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "/storage/logo.png",
+    src: "/img/logo.png",
     alt: "",
     srcSet: ""
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
