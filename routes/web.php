@@ -10,9 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/invoice',function(){
+Route::get('/storage/{file}',function($file){
     
-    return view('invoice');
+    return response()->file($file);
 });
 
 Route::any('{path}','HomeController@index')->where('path','^(?!(api|storage)).*$');
