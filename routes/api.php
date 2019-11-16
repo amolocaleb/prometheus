@@ -32,7 +32,7 @@ Route::get('/checkout/token',"Api\CheckoutController@token");
 Route::get("/receipt","Api\CheckoutController@receipt")->name('receipt');
 Route::get("/invoice/pdf","Api\CheckoutController@receiptPdf")->name('download_receipt');
 Route::get("/numbers",function(){
-   $customers = DB::table('customers')->get()->toJson();
+   $customers = DB::table('customers')->get(['name','id'])->toJson();
    echo $customers;
    return;
 });
