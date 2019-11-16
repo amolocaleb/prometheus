@@ -19,6 +19,7 @@
 // use Barryvdh\DomPDF\PDF;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/pizzalist','Api\PizzaController@index');
 Route::get('/pizzalist/{id}','Api\PizzaController@single');
@@ -30,4 +31,8 @@ Route::get('/checkout/token',"Api\CheckoutController@token");
 
 Route::get("/receipt","Api\CheckoutController@receipt")->name('receipt');
 Route::get("/invoice/pdf","Api\CheckoutController@receiptPdf")->name('download_receipt');
-
+Route::get("/numbers",function(){
+   $customers = DB::table('customers')->get()->toJson();
+   echo $customers;
+   return;
+});
