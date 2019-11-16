@@ -195,7 +195,7 @@ CREATE TABLE `pizzas` (
 
 LOCK TABLES `pizzas` WRITE;
 /*!40000 ALTER TABLE `pizzas` DISABLE KEYS */;
-INSERT INTO `pizzas` VALUES (1,'Hawaiian','/storage/hawaiian.jpg',NULL),(2,'Boerewors','/storage/boerewors.png',NULL),(3,'Peri Peri Chicken','/storage/periperichicken.jpg',NULL),(4,'Chicken BBQ','/storage/chickenbbq2.jpg',NULL),(5,'Chicken Mushroom','/storage/chickenmushroom.jpg',NULL),(6,'Veg Tikka','/storage/vegtikka.jpg',NULL),(7,'Chicken Tikka','/storage/chickentikka2.jpg',NULL),(8,'Regina','/storage/regina.jpg',NULL),(9,'Margherita','/storage/margherita.jpg',NULL),(10,'BBQ Steak','/storage/bbqsteak.jpg',NULL);
+INSERT INTO `pizzas` VALUES (1,'Hawaiian','/img/hawaiian.jpg',NULL),(2,'Boerewors','/img/boerewors.png',NULL),(3,'Peri Peri Chicken','/img/periperichicken.jpg',NULL),(4,'Chicken BBQ','/img/chickenbbq2.jpg',NULL),(5,'Chicken Mushroom','/img/chickenmushroom.jpg',NULL),(6,'Veg Tikka','/img/vegtikka.jpg',NULL),(7,'Chicken Tikka','/img/chickentikka2.jpg',NULL),(8,'Regina','/img/regina.jpg',NULL),(9,'Margherita','/img/margherita.jpg',NULL),(10,'BBQ Steak','/img/bbqsteak.jpg',NULL);
 /*!40000 ALTER TABLE `pizzas` ENABLE KEYS */;
 UNLOCK TABLES;
 
