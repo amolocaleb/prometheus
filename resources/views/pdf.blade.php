@@ -25,7 +25,7 @@
 
 
 	<!-- Styles -->
-	<link href="{{ secure_asset('css/b3.css') }}" rel="stylesheet">
+	<link href="{{ p_asset('css/b3.css') }}" rel="stylesheet">
 	{{-- <link href="{{ p_asset('css/pizzaapp.css') }}" rel="stylesheet"> --}}
 	<style>
 		.text-right {

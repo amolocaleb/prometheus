@@ -22,9 +22,10 @@ use Illuminate\Http\Request;
 
 Route::get('/pizzalist','Api\PizzaController@index');
 Route::get('/pizzalist/{id}','Api\PizzaController@single');
-Route::get('/checkout/token',"Api\CheckoutController@token");
 
 Route::post('/checkout',"Api\CheckoutController@checkout");
+Route::get('/checkout/token',"Api\CheckoutController@token");
+
 
 
 Route::get("/receipt","Api\CheckoutController@receipt")->name('receipt');

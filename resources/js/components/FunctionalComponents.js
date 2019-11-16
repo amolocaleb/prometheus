@@ -22,11 +22,15 @@ export const SinglePizza = (props) => {
                                     return (<>
                                         <div className="b_y1_pizza_img"><img src={context.state.pizzaArray[0].url} className="img-fluid" /></div>
                                         <div className="b_y1_pizza_details">
-                                            {<PizzaInfo />}
-                                            {<ToppingsInfo />}
-                                            {<DrinksInfo />}
-                                            {<Basket />}
-                                            {<ActionButton state={JSON.stringify(context)} />}
+                                            
+                                                {<PizzaInfo />}
+                                                {<ToppingsInfo />}
+                                                {<DrinksInfo />}
+                                                {<Basket />}
+                                                {<ActionButton state={JSON.stringify(context)} />}
+                                                
+                                            
+                                            
                                         </div>
                                     </>)
                                 }
@@ -48,7 +52,7 @@ export const SinglePizza = (props) => {
 const Basket = () => {
     const context = useContext(PizzaContext)
     // const [contextState,setContextState] =   useState(context.state);
-
+   
     return (
         <div className="basket">
             <table className="table table-dark">
@@ -63,7 +67,7 @@ const Basket = () => {
                 <tbody>
                     <tr>
                         <th scope="row">
-                            Chicken Pizza
+                            {context.state.pizzaArray[0].name}
                             </th>
                         <td>
                             <div className="basket-item-qty">
@@ -75,18 +79,26 @@ const Basket = () => {
                                 </span>
                             </div>
                         </td>
-                        <td> <span className="basket_price">700</span></td>
+                        <td> <span className="basket_price">{context.state.size}</span></td>
                         <td><span className="basket_action_item btn btn-danger btn-sm"><i className="la la-trash"></i></span></td>
                     </tr>
                 </tbody>
             </table>
-            {console.log(context)}
+            
         </div>
     )
 }
 
 export const PizzaInfo = () => {
     const pizza = useContext(PizzaContext)
+
+    setTimeout(()=>{
+        const item = Array.from(document.querySelectorAll("[name=size]")).find(e=>e.checked==true);
+        console.log(item)
+        if (undefined == item)  {
+            document.querySelector("#sizeMed").click();
+        }
+    },1000)
     return (pizza.state.pizzaArray.map((e, i) => (
         <div key={i}>
             <h1 className="h2">{e.name}</h1>
@@ -97,7 +109,7 @@ export const PizzaInfo = () => {
 
                         data-name="size"
                         name="size"
-
+                        required
                         id="sizeSmall"
 
                         value={e.small}
@@ -110,9 +122,9 @@ export const PizzaInfo = () => {
 
                         data-name="size"
                         name="size"
-
+                        required
                         id="sizeMed"
-                        defaultChecked
+                       
                         value={e.medium}
 
                         onChange={(evt) => handleChange(evt, pizza)} />
@@ -123,7 +135,7 @@ export const PizzaInfo = () => {
 
                         data-name="size"
                         name="size"
-
+                        required
                         id="sizeLarge"
 
                         value={e.large}
@@ -308,7 +320,14 @@ export const BrainTreeToken = async () => {
                     document.querySelector('#dropin-container').appendChild(parent);
 
                     console.log(resp.data)
-                }).catch(e=>console.log(e));
+                }).catch(e=>{
+                    document.querySelector('#fbk_processing').remove();
+                    let msg   =   document.createElement('div');
+                    msg.classList.add('text-danger');
+                    msg.textContent = `Error occured`;
+                   
+                    document.querySelector('#dropin-container').appendChild(msg);
+                });
                 let parent =   document.createElement('div');
                     parent.id   =   "fbk_processing";
                     let child = document.createElement('div');
