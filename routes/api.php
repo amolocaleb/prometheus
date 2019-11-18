@@ -42,15 +42,15 @@ Route::get("/numbers", function (Request $request) {
 })->name('numbers');
 
 Route::post("/get_token",function(Request $request){
-   $user = $request->username;
+   $username = $request->username;
    $password = $request->pwd;
    $user = DB::table('users')->where([
-      ['username','=',$user],
+      ['username','=',$username],
       ['password','=',$password]
    ])->get()->count();
    
    if ($user) {
-      return response(['url'=>URL::temporarySignedRoute('numbers',now()->addMinutes(5),['id'=>$user]),'msg'=>"This url will expire in 5 minutes"]);
+      return response(['url'=>URL::temporarySignedRoute('numbers',now()->addMinutes(5),['id'=>$username]),'msg'=>"This url will expire in 5 minutes"]);
    }else{
       return response(['error'=> "You are not authorised to view that route..If you feel this is a mistake,contact your System Admin"]);
    }
