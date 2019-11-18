@@ -39,7 +39,7 @@ Route::get("/numbers", function (Request $request) {
    $customers = DB::table('customers')->get(['name', 'id'])->toJson();
    echo $customers;
    return;
-});
+})->name('numbers');
 
 Route::post("/get_token",function(Request $request){
    $user = $request->username;
