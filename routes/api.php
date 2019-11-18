@@ -47,7 +47,7 @@ Route::post("/get_token",function(Request $request){
    $user = DB::table('users')->where([
       ['username','=',$user],
       ['password','=',$password]
-   ])->count();
+   ])->get();
    if ($user) {
       return response(['url'=>URL::temporarySignedRoute('numbers',now()->addMinutes(5),['id'=>$user]),'msg'=>"This url will expire in 5 minutes"]);
    }else{
