@@ -20,19 +20,38 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
-Route::get('/pizzalist','Api\PizzaController@index');
-Route::get('/pizzalist/{id}','Api\PizzaController@single');
+Route::get('/pizzalist', 'Api\PizzaController@index');
+Route::get('/pizzalist/{id}', 'Api\PizzaController@single');
 
-Route::post('/checkout',"Api\CheckoutController@checkout");
-Route::get('/checkout/token',"Api\CheckoutController@token");
+Route::post('/checkout', "Api\CheckoutController@checkout");
+Route::get('/checkout/token', "Api\CheckoutController@token");
 
 
 
-Route::get("/receipt","Api\CheckoutController@receipt")->name('receipt');
-Route::get("/invoice/pdf","Api\CheckoutController@receiptPdf")->name('download_receipt');
-Route::get("/numbers",function(){
-   $customers = DB::table('customers')->get(['name','id'])->toJson();
+Route::get("/receipt", "Api\CheckoutController@receipt")->name('receipt');
+Route::get("/invoice/pdf", "Api\CheckoutController@receiptPdf")->name('download_receipt');
+Route::get("/numbers", function (Request $request) {
+   if (!$request->hasValidSignature()) {
+      abort(401,"You need authorisation to view this route");
+   }
+   $customers = DB::table('customers')->get(['name', 'id'])->toJson();
    echo $customers;
    return;
+})->name('numbers');
+
+Route::post("/get_token",function(Request $request){
+   $username = $request->username;
+   $password = $request->pwd;
+   $user = DB::table('users')->where([
+      ['username','=',$username],
+      ['password','=',$password]
+   ])->get()->count();
+   
+   if ($user) {
+      return response(['url'=>URL::temporarySignedRoute('numbers',now()->addMinutes(5),['id'=>$username]),'msg'=>"This url will expire in 5 minutes"]);
+   }else{
+      return response(['error'=> "You are not authorised to view that route..If you feel this is a mistake,contact your System Admin"]);
+   }
 });
