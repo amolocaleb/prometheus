@@ -55,7 +55,7 @@ BT_PRIVATE_KEY=REPLACE_WITH_YOUR_PRIVATE_KEY
 ```
 Do not modify the entry for `BT_ENVIRONMENT`
 
-Details about your braintree API keys can be found [**Here**](https://sandbox.braintreegateway.com/merchants/84jhzcb4n8pp5qsj/users/fzwwcw96c5vvhf8k/api_keys)
+Details about your braintree API keys can be found [**Here**](https://sandbox.braintreegateway.com/) in the API section
 
 If you dont have a Braintree account set up yet,set it up [**Here**](https://www.braintreepayments.com/sandbox) 
 
